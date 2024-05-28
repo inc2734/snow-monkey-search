@@ -1,0 +1,10 @@
+{
+	"core": "https://wordpress.org/latest.zip",
+	"plugins": [ "." ],
+	"config": {
+		"WP_DEBUG": true
+	},
+	"mappings": {
+		".export": "./.export"
+	}
+}

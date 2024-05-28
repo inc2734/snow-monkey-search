@@ -1,0 +1,13 @@
+.DS_Store
+.sass-cache/
+npm-debug.log
+node_modules/
+vendor/
+dist/
+*.sql
+snow-monkey-search/
+snow-monkey-search.zip
+.wp-env.override.json
+/.export/*
+error_log
+.phpunit.result.cache

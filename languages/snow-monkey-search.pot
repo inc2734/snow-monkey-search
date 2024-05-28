@@ -1,0 +1,33 @@
+# Copyright (C) 2024 inc2734
+# This file is distributed under the GPL2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Snow Monkey Search 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-search\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-05-28T01:43:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.9.0\n"
+"X-Domain: snow-monkey-search\n"
+
+#. Plugin Name of the plugin
+#: snow-monkey-search.php:88
+#: snow-monkey-search.php:106
+msgid "Snow Monkey Search"
+msgstr ""
+
+#. Description of the plugin
+msgid "This plugin places a filtered search form in Snow Monkey's custom post archives."
+msgstr ""
+
+#. Author of the plugin
+msgid "inc2734"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://2inc.org"
+msgstr ""
