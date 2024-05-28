@@ -76,6 +76,7 @@ class Bootstrap {
 	 * Register blocks.
 	 */
 	public function _register_blocks() {
+		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/search-box' );
 	}
 
 	/**
@@ -85,11 +86,29 @@ class Bootstrap {
 		register_post_type(
 			'snow-monkey-search',
 			array(
-				'label'        => __( 'Snow Monkey Search', 'snow-monkey-search' ),
-				'public'       => false,
-				'show_ui'      => true,
-				'show_in_rest' => true,
-				'supports'     => array( 'title', 'editor', 'custom-fields' ),
+				'label'         => __( 'Snow Monkey Search', 'snow-monkey-search' ),
+				'public'        => false,
+				'show_ui'       => true,
+				'show_in_rest'  => true,
+				'supports'      => array( 'title', 'editor', 'custom-fields' ),
+				'template_lock' => 'all',
+				'template'      => array(
+					array(
+						'snow-monkey-search/search-box',
+						array(),
+						array(
+							array(
+								'core/paragraph',
+								array(
+									'lock' => array(
+										'move'   => false,
+										'remove' => false,
+									),
+								),
+							),
+						),
+					),
+				),
 			)
 		);
 	}

@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "snow-monkey-search",
+	"name": "snow-monkey-search/search-box",
+	"title": "Search Box",
+	"category": "snow-monkey-search",
+	"attributes": {
+		"postTypes": {
+			"type": "array",
+			"default": []
+		},
+		"templateLock": {
+			"type": [ "string", "boolean" ],
+			"enum": [ "all", "insert", "contentOnly", false ]
+		}
+	},
+	"supports": {
+		"customClassName": true,
+		"className": false,
+		"inserter": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js"
+}
