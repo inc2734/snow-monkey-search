@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "snow-monkey-search",
+	"name": "snow-monkey-search/taxonomy-search",
+	"title": "Taxonomy Search",
+	"category": "snow-monkey-search",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": null
+		},
+		"controlType": {
+			"type": "string",
+			"default": "checks"
+		},
+		"postType": {
+			"type": "string",
+			"default": ""
+		},
+		"taxonomy": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [ "snow-monkey-search/relatedPostType" ],
+	"supports": {
+		"className": false,
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

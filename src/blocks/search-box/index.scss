@@ -1,0 +1,29 @@
+:where(.editor-styles-wrapper) .sms-search-box {
+	.c-form-control,
+	.c-checkbox__control,
+	.c-radio__control,
+	.c-select__control {
+		&:disabled {
+			background-color: white;
+			color: inherit;
+			opacity: 1;
+
+			&:checked::before {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+:where(.editor-styles-wrapper) .sms-search-box {
+	.c-radio__control:disabled:checked {
+		background-color: #3a87fd;
+		border-color: #3a87fd;
+
+		&::before {
+			background-color: white;
+			width: 6px;
+			height: 6px;
+		}
+	}
+}

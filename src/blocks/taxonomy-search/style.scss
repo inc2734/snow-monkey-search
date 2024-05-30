@@ -1,0 +1,34 @@
+.sms-checkboxes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 var(--_margin-1);
+
+	.c-checkbox {
+		gap: var(--_margin-2);
+	}
+
+	.c-checkbox__control {
+		margin: 0;
+	}
+}
+
+.sms-radios {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 var(--_margin-1);
+
+	.c-radio {
+		gap: var(--_margin-2);
+	}
+
+	.c-radio__control {
+		margin: 0;
+	}
+}
+
+.sms-select {
+	.c-select,
+	.c-select__control {
+		width: 100%;
+	}
+}

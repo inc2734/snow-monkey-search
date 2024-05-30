@@ -1,0 +1,7 @@
+.sms-item {
+	--sms--flex-grow: 0;
+	--sms--flex-shrink: 1;
+	--sms--flex-basis: auto;
+
+	flex: var(--sms--flex-grow) var(--sms--flex-shrink) var(--sms--flex-basis);
+}

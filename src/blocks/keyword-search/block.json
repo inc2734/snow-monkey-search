@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "snow-monkey-search",
+	"name": "snow-monkey-search/keyword-search",
+	"title": "Keyword Search",
+	"category": "snow-monkey-search",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": null
+		},
+		"placeholder": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"className": false,
+		"anchor": true,
+		"html": false,
+		"multiple": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

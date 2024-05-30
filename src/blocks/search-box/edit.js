@@ -1,18 +1,30 @@
 import {
+	InnerBlocks,
 	InspectorControls,
 	useBlockProps,
 	useInnerBlocksProps,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
 
-import { BaseControl, PanelBody, ToggleControl } from '@wordpress/components';
+import { useEntityProp, store as coreStore } from '@wordpress/core-data';
+import { PanelBody, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
+import { store as editorStore } from '@wordpress/editor';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-export default function ( { attributes, setAttributes } ) {
-	const { postTypes, templateLock } = attributes;
+export default function ( { attributes, setAttributes, clientId } ) {
+	const { relatedPostType } = attributes;
+
+	const hasInnerBlocks = useSelect(
+		( select ) =>
+			!! select( blockEditorStore ).getBlock( clientId )?.innerBlocks
+				?.length,
+		[ clientId ]
+	);
 
 	const allPostTypes = useSelect( ( select ) => {
-		const { getPostTypes } = select( 'core' );
+		const { getPostTypes } = select( coreStore );
 
 		const _allPostTypes = getPostTypes( { per_page: -1 } ) || [];
 
@@ -24,48 +36,76 @@ export default function ( { attributes, setAttributes } ) {
 		);
 	} );
 
-	const blockProps = useBlockProps( {} );
+	const currentPostType = useSelect(
+		( select ) => select( editorStore ).getCurrentPostType(),
+		[]
+	);
+	const [ meta, setMeta ] = useEntityProp(
+		'postType',
+		currentPostType,
+		'meta'
+	);
 
-	const innerBlocksProps = useInnerBlocksProps( blockProps, {
-		templateLock,
+	useEffect( () => {
+		// Meta is required for form calls.
+		setMeta( {
+			...meta,
+			sms_related_post_type: relatedPostType,
+		} );
+	}, [ relatedPostType ] );
+
+	const blockProps = useBlockProps( {
+		className: 'sms-search-box',
 	} );
+
+	const innerBlocksProps = useInnerBlocksProps(
+		{
+			className: 'sms-search-box__content',
+		},
+		{
+			renderAppender: hasInnerBlocks
+				? InnerBlocks.DefaultBlockAppender
+				: InnerBlocks.ButtonBlockAppender,
+		}
+	);
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
-					<BaseControl
-						label={ __(
+					<SelectControl
+						label={ __( 'Post Type', 'snow-monkey-search' ) }
+						help={ __(
 							'Custom post archives displaying this search box',
 							'snow-monkey-search'
 						) }
-					>
-						{ allPostTypes.map( ( postType ) => (
-							<ToggleControl
-								key={ postType.slug }
-								label={ postType.name }
-								checked={ postTypes.includes( postType.slug ) }
-								onChange={ ( newAttribute ) => {
-									const newPostTypes = newAttribute
-										? [ ...postTypes, postType.slug ]
-										: postTypes.filter(
-												( value ) =>
-													value !== postType.slug
-										  );
-
-									setAttributes( {
-										postTypes: Array.from(
-											new Set( newPostTypes )
-										),
-									} );
-								} }
-							/>
-						) ) }
-					</BaseControl>
+						value={ relatedPostType || '' }
+						onChange={ ( newAttribute ) => {
+							setAttributes( {
+								relatedPostType: newAttribute,
+							} );
+						} }
+						options={ [
+							{
+								label: '',
+								value: '',
+							},
+							...allPostTypes.map( ( postType ) => ( {
+								label: postType.name,
+								value: postType.slug,
+							} ) ),
+						] }
+					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div { ...innerBlocksProps } />
+			<div { ...blockProps }>
+				<div { ...innerBlocksProps } />
+
+				<div className="sms-search-box__action">
+					<button>{ __( 'Search', 'snow-monkey-search' ) }</button>
+				</div>
+			</div>
 		</>
 	);
 }

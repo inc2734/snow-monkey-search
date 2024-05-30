@@ -5,22 +5,53 @@
 	"name": "snow-monkey-search/search-box",
 	"title": "Search Box",
 	"category": "snow-monkey-search",
+	"allowedBlocks": [ "snow-monkey-search/item" ],
 	"attributes": {
-		"postTypes": {
-			"type": "array",
-			"default": []
+		"relatedPostType": {
+			"type": "string",
+			"default": ""
 		},
 		"templateLock": {
 			"type": [ "string", "boolean" ],
 			"enum": [ "all", "insert", "contentOnly", false ]
 		}
 	},
+	"providesContext": {
+		"snow-monkey-search/relatedPostType": "relatedPostType"
+	},
 	"supports": {
 		"customClassName": true,
 		"className": false,
 		"inserter": false,
 		"multiple": false,
-		"reusable": false
+		"reusable": false,
+		"color": {
+			"background": true,
+			"color": true,
+			"gradients": true,
+			"link": true
+		},
+		"spacing": {
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"padding": true
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		}
 	},
-	"editorScript": "file:./index.js"
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
 }

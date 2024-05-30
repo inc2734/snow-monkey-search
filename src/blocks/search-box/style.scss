@@ -1,0 +1,19 @@
+.sms-search-box {
+	&__content {
+		--sms--gap: var(--_margin1) var(--_margin2);
+
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--sms--gap);
+	}
+
+	&__action {
+		margin-top: var(--_margin1);
+	}
+}
+
+.sms-form-control {
+	display: flex;
+	flex-direction: column;
+	gap: var(--_margin-2);
+}
