@@ -453,11 +453,11 @@ class Bootstrap {
 						$meta_type = $meta_set['type'];
 
 						if ( 'date' === $meta_type ) {
-							$meta_value = date( 'Y-m-d', strtotime( $meta_value ) );
+							$meta_value = gmdate( 'Y-m-d', strtotime( $meta_value ) );
 						} elseif ( 'datetime' === $meta_type ) {
-							$meta_value = date( 'Y-m-d H:i:s', strtotime( $meta_value ) );
+							$meta_value = gmdate( 'Y-m-d H:i:s', strtotime( $meta_value ) );
 						} elseif ( 'time' === $meta_type ) {
-							$meta_value = date( 'H:i:s', strtotime( $meta_value ) );
+							$meta_value = gmdate( 'H:i:s', strtotime( $meta_value ) );
 						}
 					}
 
