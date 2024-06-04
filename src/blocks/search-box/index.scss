@@ -1,8 +1,7 @@
 :where(.editor-styles-wrapper) .sms-search-box {
 	.c-form-control,
 	.c-checkbox__control,
-	.c-radio__control,
-	.c-select__control {
+	.c-radio__control {
 		&:disabled {
 			background-color: white;
 			color: inherit;
@@ -25,5 +24,13 @@
 			width: 6px;
 			height: 6px;
 		}
+	}
+}
+
+:where(.editor-styles-wrapper) .sms-search-box {
+	.c-select__control {
+		background-color: transparent;
+		color: inherit;
+		opacity: 1;
 	}
 }

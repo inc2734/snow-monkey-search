@@ -2,32 +2,36 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"textdomain": "snow-monkey-search",
-	"name": "snow-monkey-search/period-search",
-	"title": "Period Search",
+	"name": "snow-monkey-search/custom-field-search",
+	"title": "Custom Field Search",
 	"category": "snow-monkey-search",
 	"attributes": {
 		"label": {
 			"type": "string",
 			"default": null
 		},
-		"controlType": {
-			"type": "string",
-			"default": "date"
-		},
-		"min": {
+		"key": {
 			"type": "string",
 			"default": ""
 		},
-		"max": {
+		"postType": {
 			"type": "string",
 			"default": ""
+		},
+		"compare": {
+			"type": "string",
+			"default": "="
+		},
+		"type": {
+			"type": "string",
+			"default": "char"
 		}
 	},
+	"usesContext": [ "snow-monkey-search/relatedPostType" ],
 	"supports": {
 		"className": false,
 		"anchor": true,
-		"html": false,
-		"multiple": false
+		"html": false
 	},
 	"editorScript": "file:./index.js",
 	"style": "file:./style-index.css",

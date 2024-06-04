@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Search 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "search\n"
-"POT-Creation-Date: 2024-06-03T23:22:11+00:00\n"
-"PO-Revision-Date: 2024-06-04 08:23+0900\n"
+"POT-Creation-Date: 2024-06-04T07:05:32+00:00\n"
+"PO-Revision-Date: 2024-06-04 16:06+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Domain: snow-monkey-search\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-search.php:122 snow-monkey-search.php:200
+#: snow-monkey-search.php:151 snow-monkey-search.php:229
 msgid "Snow Monkey Search"
 msgstr "Snow Monkey Search"
 
@@ -41,18 +41,58 @@ msgstr "https://2inc.org"
 msgid "〜"
 msgstr "〜"
 
-#: dist/blocks/search-box/render.php:55 dist/blocks/search-box/index.js:1
+#: dist/blocks/search-box/render.php:41 dist/blocks/search-box/index.js:1
 msgid "Search"
 msgstr "検索"
 
-#: snow-monkey-search.php:452
+#: snow-monkey-search.php:541
 msgid "Sorry, but nothing matched your search terms."
 msgstr "ご指定の検索条件に合う投稿がありませんでした。"
 
-#: dist/blocks/item/index.js:1 dist/blocks/keyword-search/index.js:1
-#: dist/blocks/period-search/index.js:1 dist/blocks/taxonomy-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:1 dist/blocks/item/index.js:1
+#: dist/blocks/keyword-search/index.js:1 dist/blocks/period-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
 msgid "Block settings"
 msgstr "ブロック設定"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "Key"
+msgstr "キー"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/period-search/index.js:4 dist/blocks/taxonomy-search/index.js:1
+msgid "Type"
+msgstr "タイプ"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "NUMERIC"
+msgstr "NUMERIC"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "CHAR"
+msgstr "CHAR"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "DATE"
+msgstr "DATE"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "DATETIME"
+msgstr "DATETIME"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "TIME"
+msgstr "TIME"
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "Compare"
+msgstr "比較"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/keyword-search/index.js:1 dist/blocks/period-search/index.js:4
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Label…"
+msgstr "ラベル…"
 
 #: dist/blocks/item/index.js:1
 msgid "Allows for stretching from the basic size."
@@ -78,11 +118,6 @@ msgstr "キーワード"
 msgid "Placeholder"
 msgstr "プレースホルダー"
 
-#: dist/blocks/keyword-search/index.js:1 dist/blocks/period-search/index.js:4
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Label…"
-msgstr "ラベル…"
-
 #: dist/blocks/period-search/index.js:1
 msgid "Period"
 msgstr "期間"
@@ -95,10 +130,6 @@ msgid ""
 msgstr ""
 "未来の投稿も検索や表示に含めたい場合は、%1$sフィルターフックを使用してくださ"
 "い。"
-
-#: dist/blocks/period-search/index.js:4 dist/blocks/taxonomy-search/index.js:1
-msgid "Type"
-msgstr "タイプ"
 
 #: dist/blocks/period-search/index.js:4
 msgid "Date"
@@ -147,6 +178,11 @@ msgstr "読み込み中…"
 #: dist/blocks/taxonomy-search/index.js:1
 msgid "Taxonomy is not availabled."
 msgstr "タクソノミーは利用できません。"
+
+#: dist/blocks/custom-field-search/block.json
+msgctxt "block title"
+msgid "Custom Field Search"
+msgstr "カスタムフィールド検索"
 
 #: dist/blocks/item/block.json
 msgctxt "block title"

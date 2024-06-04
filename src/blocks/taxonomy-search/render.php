@@ -63,7 +63,9 @@ if ( ! $terms ) {
 	return;
 }
 
-$http_this = filter_input( INPUT_GET, 'sms-taxonomy:' . $wp_taxonomy->name, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? array();
+$http_this = filter_input( INPUT_GET, 'sms-taxonomies', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? array();
+$http_this = $http_this[ $wp_taxonomy->name ] ?? array();
+$http_this = is_array( $http_this ) ? $http_this : array();
 
 $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-taxonomy-search sms-form-control' ) );
 ?>
@@ -84,7 +86,7 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-taxonomy-s
 							<input
 								type="checkbox"
 								class="c-checkbox__control"
-								name="sms-taxonomy:<?php echo esc_attr( $wp_taxonomy->name ); ?>[]"
+								name="sms-taxonomies[<?php echo esc_attr( $wp_taxonomy->name ); ?>][]"
 								value="<?php echo esc_attr( $_term->slug ); ?>"
 								<?php if ( $http_this && in_array( $_term->slug, $http_this, true ) ) : ?>
 									checked
@@ -105,7 +107,7 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-taxonomy-s
 							<input
 								type="radio"
 								class="c-radio__control"
-								name="sms-taxonomy:<?php echo esc_attr( $wp_taxonomy->name ); ?>[]"
+								name="sms-taxonomies[<?php echo esc_attr( $wp_taxonomy->name ); ?>][]"
 								value="<?php echo esc_attr( $_term->slug ); ?>"
 								<?php if ( $http_this && in_array( $_term->slug, $http_this, true ) ) : ?>
 									checked
@@ -122,7 +124,7 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-taxonomy-s
 			<div class="sms-select">
 				<div class="c-select">
 					<select
-						name="sms-taxonomy:<?php echo esc_attr( $wp_taxonomy->name ); ?>[]"
+						name="sms-taxonomies[<?php echo esc_attr( $wp_taxonomy->name ); ?>][]"
 						class="c-select__control"
 					>
 						<option value=""></option>

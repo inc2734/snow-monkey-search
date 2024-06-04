@@ -18,9 +18,6 @@ if ( is_tax() || is_category() || is_tag() ) {
 	}
 }
 
-$post_type_name = get_query_var( 'post_type' ) ? get_query_var( 'post_type' ) : 'post';
-$wp_post_type   = $post_type_name ? get_post_type_object( $post_type_name ) : false;
-
 $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-search-box' ) );
 ?>
 
@@ -36,17 +33,6 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-search-box
 
 		<?php if ( ! empty( $post_type_for_http_taxonomy ) ) : ?>
 			<input type="hidden" name="post_type" value="<?php echo esc_attr( $post_type_for_http_taxonomy ); ?>" />
-		<?php endif; ?>
-
-		<?php
-		$taxonomies = 'post' === $post_type_name
-			? array( 'category', 'post_tag' )
-			: $wp_post_type->taxonomies;
-		?>
-		<?php if ( $wp_post_type ) : ?>
-			<?php foreach ( $taxonomies as $_taxonomy ) : ?>
-				<input type="hidden" name="sms-taxonomies[]" value="<?php echo esc_attr( $_taxonomy ); ?>" />
-			<?php endforeach; ?>
 		<?php endif; ?>
 
 		<input type="hidden" name="snow-monkey-search" value="<?php the_ID(); ?>" />

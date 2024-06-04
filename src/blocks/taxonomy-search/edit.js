@@ -137,6 +137,8 @@ export default function ( { attributes, setAttributes, context } ) {
 						onDeselect={ () =>
 							setAttributes( {
 								taxonomy: metadata.attributes.taxonomy.default,
+								label: metadata.attributes.label.default,
+								postType: metadata.attributes.postType.default,
 							} )
 						}
 					>
@@ -145,12 +147,12 @@ export default function ( { attributes, setAttributes, context } ) {
 							value={ taxonomy }
 							onChange={ ( newAttribute ) => {
 								setAttributes( {
+									taxonomy: newAttribute,
 									label: undefined,
 									postType:
 										context[
 											'snow-monkey-search/relatedPostType'
 										],
-									taxonomy: newAttribute,
 								} );
 							} }
 							options={ [

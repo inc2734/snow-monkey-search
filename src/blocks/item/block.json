@@ -7,9 +7,10 @@
 	"category": "snow-monkey-search",
 	"parent": [ "snow-monkey-search/search-box" ],
 	"allowedBlocks": [
+		"snow-monkey-search/custom-field-search",
 		"snow-monkey-search/keyword-search",
-		"snow-monkey-search/taxonomy-search",
-		"snow-monkey-search/period-search"
+		"snow-monkey-search/period-search",
+		"snow-monkey-search/taxonomy-search"
 	],
 	"attributes": {
 		"flexGrow": {

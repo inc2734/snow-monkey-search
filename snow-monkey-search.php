@@ -57,6 +57,34 @@ class Bootstrap {
 		add_filter( 'get_post_status', array( $this, '_publish_future_posts' ), 10, 2 );
 		add_action( 'pre_get_posts', array( $this, '_pre_get_posts_for_search' ) );
 		add_action( 'wp', array( $this, '_update_view' ) );
+
+		add_action(
+			'rest_api_init',
+			function () {
+				register_rest_route(
+					'snow-monkey-search/v1',
+					'/post-meta-keys/(?P<post_type>[a-zA-Z0-9_-]+)',
+					array(
+						'methods'             => 'GET',
+						'permission_callback' => function () {
+							return current_user_can( 'manage_options' );
+						},
+						'callback'            => function ( $request ) {
+							$post_type = $request['post_type'];
+
+							global $wp_meta_keys;
+
+							$post_meta_keys = array_keys( $wp_meta_keys['post'][ $post_type ] ?? array() );
+							if ( empty( $post_meta_keys ) ) {
+								return new \WP_REST_Response( array( 'message' => 'No post meta keys found' ), 404 );
+							}
+
+							return $post_meta_keys;
+						},
+					)
+				);
+			}
+		);
 	}
 
 	/**
@@ -84,11 +112,12 @@ class Bootstrap {
 	 * Register blocks.
 	 */
 	public function _register_blocks() {
-		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/search-box' );
+		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/custom-field-search' );
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/item' );
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/keyword-search' );
-		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/taxonomy-search' );
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/period-search' );
+		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/search-box' );
+		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/taxonomy-search' );
 
 		foreach ( \WP_Block_Type_Registry::get_instance()->get_all_registered() as $block_type => $block ) {
 			if ( 0 === strpos( $block_type, 'snow-monkey-search/' ) ) {
@@ -355,13 +384,14 @@ class Bootstrap {
 			// Taxonomy query.
 			$taxonomies = filter_input( INPUT_GET, 'sms-taxonomies', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 			if ( $taxonomies ) {
-				$taxonomies = array_unique( $taxonomies );
-				$tax_query  = array();
+				$tax_query = array();
 
-				foreach ( $taxonomies as $taxonomy ) {
-					$_tax_query = array();
-					$terms      = filter_input( INPUT_GET, 'sms-taxonomy:' . $taxonomy, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? array();
-					$terms      = array_filter(
+				foreach ( $taxonomies as $taxonomy_name => $terms ) {
+					if ( ! is_array( $terms ) ) {
+						$terms = array();
+					}
+
+					$terms = array_filter(
 						$terms,
 						function ( $value ) {
 							return '' !== $value && false !== $value && ! is_null( $value );
@@ -370,7 +400,7 @@ class Bootstrap {
 
 					if ( $terms ) {
 						$tax_query[] = array(
-							'taxonomy' => $taxonomy,
+							'taxonomy' => $taxonomy_name,
 							'field'    => 'slug',
 							'terms'    => $terms,
 							'operator' => 'IN',
@@ -382,6 +412,69 @@ class Bootstrap {
 					$tax_query['relation'] = 'AND';
 
 					$query->set( 'tax_query', $tax_query );
+				}
+			}
+
+			// Meta query.
+			$post_metas = filter_input( INPUT_GET, 'sms-post-meta', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+			if ( $post_metas ) {
+				$meta_query = array();
+
+				foreach ( $post_metas as $meta_key => $meta_set ) {
+					$meta_value = false;
+					if ( isset( $meta_set['value'] ) && '' !== $meta_set['value'] && false !== $meta_set['value'] ) {
+						$meta_value = $meta_set['value'];
+					}
+
+					$meta_compare             = false;
+					$available_compare_values = array(
+						'=',
+						'!=',
+						'>',
+						'>=',
+						'<',
+						'<=',
+						'LIKE',
+						'NOT LIKE',
+					);
+					if ( isset( $meta_set['compare'] ) && in_array( $meta_set['compare'], $available_compare_values, true ) ) {
+						$meta_compare = $meta_set['compare'];
+					}
+
+					$meta_type             = false;
+					$available_type_values = array(
+						'numeric',
+						'char',
+						'date',
+						'datetime',
+						'time',
+					);
+					if ( isset( $meta_set['type'] ) && in_array( $meta_set['type'], $available_type_values, true ) ) {
+						$meta_type = $meta_set['type'];
+
+						if ( 'date' === $meta_type ) {
+							$meta_value = date( 'Y-m-d', strtotime( $meta_value ) );
+						} elseif ( 'datetime' === $meta_type ) {
+							$meta_value = date( 'Y-m-d H:i:s', strtotime( $meta_value ) );
+						} elseif ( 'time' === $meta_type ) {
+							$meta_value = date( 'H:i:s', strtotime( $meta_value ) );
+						}
+					}
+
+					if ( false !== $meta_value && $meta_compare && $meta_type ) {
+						$meta_query[] = array(
+							'key'     => $meta_key,
+							'value'   => $meta_value,
+							'compare' => $meta_compare,
+							'type'    => $meta_type,
+						);
+					}
+				}
+
+				if ( $meta_query ) {
+					$meta_query['relation'] = 'AND';
+
+					$query->set( 'meta_query', $meta_query );
 				}
 			}
 
