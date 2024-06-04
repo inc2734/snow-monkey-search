@@ -49,7 +49,7 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-search-box
 			<?php endforeach; ?>
 		<?php endif; ?>
 
-		<input type="hidden" name="snow-monkey-search" value="1" />
+		<input type="hidden" name="snow-monkey-search" value="<?php the_ID(); ?>" />
 
 		<button type="submit">
 			<?php esc_html_e( 'Search', 'snow-monkey-search' ); ?>

@@ -8,7 +8,8 @@
 	"parent": [ "snow-monkey-search/search-box" ],
 	"allowedBlocks": [
 		"snow-monkey-search/keyword-search",
-		"snow-monkey-search/taxonomy-search"
+		"snow-monkey-search/taxonomy-search",
+		"snow-monkey-search/period-search"
 	],
 	"attributes": {
 		"flexGrow": {

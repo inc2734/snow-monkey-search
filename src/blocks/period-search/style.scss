@@ -1,0 +1,26 @@
+.sms-period-search {
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--_margin-2);
+		align-items: center;
+	}
+
+	&__start,
+	&__end {
+		display: flex;
+		flex-grow: 1;
+	}
+
+	.c-form-control {
+		position: relative;
+		flex-grow: 1;
+
+		&::-webkit-calendar-picker-indicator {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
+	}
+}
