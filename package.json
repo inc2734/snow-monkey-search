@@ -8,10 +8,10 @@
 	},
 	"author": "inc2734",
 	"license": "GPL-2.0+",
-	"dependencies": {},
 	"devDependencies": {
 		"@wordpress/browserslist-config": "^5.41.0",
 		"@wordpress/env": "^9.10.0",
+		"@wordpress/icons": "^10.0.0",
 		"@wordpress/scripts": "^27.9.0",
 		"autoprefixer": "^10.4.19",
 		"browser-sync": "^3.0.2",
