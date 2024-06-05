@@ -249,6 +249,8 @@ class Query {
 					}
 				}
 			}
+
+			do_action_ref_array( 'snow_monkey_search_pre_get_posts', array( &$query ) );
 		}
 	}
 
