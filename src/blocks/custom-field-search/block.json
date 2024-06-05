@@ -18,6 +18,14 @@
 			"type": "string",
 			"default": ""
 		},
+		"controlType": {
+			"type": "string",
+			"default": "text"
+		},
+		"options": {
+			"type": "string",
+			"default": ""
+		},
 		"compare": {
 			"type": "string",
 			"default": "="

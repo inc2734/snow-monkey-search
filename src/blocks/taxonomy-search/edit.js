@@ -95,7 +95,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							metadata.attributes.controlType.default
 						}
 						isShownByDefault
-						label={ __( 'Type', 'snow-monkey-search' ) }
+						label={ __( 'Control Type', 'snow-monkey-search' ) }
 						onDeselect={ () =>
 							setAttributes( {
 								controlType:
@@ -104,7 +104,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
-							label={ __( 'Type', 'snow-monkey-search' ) }
+							label={ __( 'Control Type', 'snow-monkey-search' ) }
 							value={ controlType }
 							onChange={ ( newAttribute ) => {
 								setAttributes( {

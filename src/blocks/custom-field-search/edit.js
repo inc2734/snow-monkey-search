@@ -6,21 +6,27 @@ import {
 
 import {
 	SelectControl,
+	TextareaControl,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 
 import { useEffect, useState } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 
 import apiFetch from '@wordpress/api-fetch';
+
+import { optionsToJsonArray } from './helper';
 
 import metadata from './block.json';
 
 export default function ( { attributes, setAttributes, context } ) {
-	const { label, key, postType, compare, type } = attributes;
+	const { label, key, postType, controlType, options, compare, type } =
+		attributes;
 
 	const [ keys, setKeys ] = useState( [] );
+	const [ finalControlType, setFinalControlType ] = useState( controlType );
+	const [ finalOptions, setFinalOptions ] = useState( [] );
 
 	// Reset the key once the post type has been switched in the search box.
 	useEffect( () => {
@@ -50,25 +56,61 @@ export default function ( { attributes, setAttributes, context } ) {
 		}
 	}, [ key ] );
 
+	// Set final control type.
+	useEffect( () => {
+		if ( 'text' === controlType ) {
+			switch ( type ) {
+				case 'numeric':
+					setFinalControlType( 'number' );
+					break;
+				case 'date':
+					setFinalControlType( 'date' );
+					break;
+				case 'datetime':
+					setFinalControlType( 'datetime-local' );
+					break;
+				case 'time':
+					setFinalControlType( 'time' );
+					break;
+				default:
+					setFinalControlType( 'text' );
+			}
+		} else {
+			setFinalControlType( controlType );
+		}
+	}, [ controlType, type ] );
+
+	// Set default options
+	useEffect( () => {
+		if (
+			'checks' === finalControlType ||
+			'radios' === finalControlType ||
+			'select' === finalControlType
+		) {
+			if ( '' === options ) {
+				setAttributes( {
+					options: 'value1\n"value2" : "label2"\n"value3" : "label3"',
+				} );
+			}
+		} else {
+			setAttributes( {
+				options: '',
+			} );
+		}
+	}, [ finalControlType, options ] );
+
+	// Set final options.
+	useEffect( () => {
+		if ( !! options ) {
+			setFinalOptions( optionsToJsonArray( options ) );
+		} else {
+			setFinalOptions( [] );
+		}
+	}, [ options ] );
+
 	const blockProps = useBlockProps( {
 		className: 'sms-custom-field-search sms-form-control',
 	} );
-
-	let controlType = 'text';
-	switch ( type ) {
-		case 'numeric':
-			controlType = 'number';
-			break;
-		case 'date':
-			controlType = 'date';
-			break;
-		case 'datetime':
-			controlType = 'datetime-local';
-			break;
-		case 'time':
-			controlType = 'time';
-			break;
-	}
 
 	return (
 		<>
@@ -114,6 +156,90 @@ export default function ( { attributes, setAttributes, context } ) {
 								} ) ),
 							] }
 						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () =>
+							controlType !==
+							metadata.attributes.controlType.default
+						}
+						isShownByDefault
+						label={ __( 'Type', 'snow-monkey-search' ) }
+						onDeselect={ () =>
+							setAttributes( {
+								controlType:
+									metadata.attributes.controlType.default,
+							} )
+						}
+					>
+						<SelectControl
+							label={ __( 'Control Type', 'snow-monkey-search' ) }
+							help={ __(
+								'For "Text," depending on the "Type," it will automatically change to the appropriate control. For "Checkbox," "Radio Button," and "Select Box," you need to set the choices.',
+								'snow-monkey-search'
+							) }
+							value={ controlType }
+							onChange={ ( newAttribute ) => {
+								setAttributes( {
+									controlType: newAttribute,
+								} );
+							} }
+							options={ [
+								{
+									label: __( 'Text', 'snow-monkey-search' ),
+									value: 'text',
+								},
+								{
+									label: __( 'Checks', 'snow-monkey-search' ),
+									value: 'checks',
+								},
+								{
+									label: __( 'Radios', 'snow-monkey-search' ),
+									value: 'radios',
+								},
+								{
+									label: __( 'Select', 'snow-monkey-search' ),
+									value: 'select',
+								},
+							] }
+						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () =>
+							controlType !==
+							metadata.attributes.controlType.default
+						}
+						isShownByDefault
+						label={ __( 'Type', 'snow-monkey-search' ) }
+						onDeselect={ () =>
+							setAttributes( {
+								controlType:
+									metadata.attributes.controlType.default,
+							} )
+						}
+					>
+						{ ( 'checks' === finalControlType ||
+							'radios' === finalControlType ||
+							'select' === finalControlType ) && (
+							<TextareaControl
+								label={ __( 'options', 'snow-monkey-search' ) }
+								value={ options }
+								help={ sprintf(
+									// translators: %1$s: line-break-char.
+									__(
+										'Required. Enter in the following format: "value" : "label"%1$s or value%1$s',
+										'snow-monkey-search'
+									),
+									'\u21B5'
+								) }
+								onChange={ ( newAttribute ) => {
+									setAttributes( {
+										options: newAttribute,
+									} );
+								} }
+							/>
+						) }
 					</ToolsPanelItem>
 
 					<ToolsPanelItem
@@ -241,19 +367,81 @@ export default function ( { attributes, setAttributes, context } ) {
 				</div>
 
 				<div className="sms-custom-field-search__content sms-form-control__content">
-					{ 'date' === controlType ||
-					'datetime-local' === controlType ||
-					'time' === controlType ? (
+					{ ( 'date' === finalControlType ||
+						'datetime-local' === finalControlType ||
+						'time' === finalControlType ) && (
 						<div className="sms-date-control">
 							<input
-								type={ controlType }
+								type={ finalControlType }
 								className="c-form-control"
 								disabled
 							/>
 						</div>
-					) : (
+					) }
+
+					{ 'checks' === finalControlType && (
+						<div className="sms-checkboxes">
+							{ finalOptions.map( ( option ) => (
+								<label key={ option.value }>
+									<span className="c-checkbox">
+										<input
+											type="checkbox"
+											className="c-checkbox__control"
+											value={ option.value }
+											disabled
+										/>
+										<span className="c-checkbox__label">
+											{ option.label }
+										</span>
+									</span>
+								</label>
+							) ) }
+						</div>
+					) }
+
+					{ 'radios' === finalControlType && (
+						<div className="sms-radios">
+							{ finalOptions.map( ( option ) => (
+								<label key={ option.value }>
+									<span className="c-radio">
+										<input
+											type="radio"
+											className="c-radio__control"
+											value={ option.value }
+											disabled
+										/>
+										<span className="c-radio__label">
+											{ option.label }
+										</span>
+									</span>
+								</label>
+							) ) }
+						</div>
+					) }
+
+					{ 'select' === finalControlType && (
+						<div className="sms-select">
+							<div className="c-select">
+								<select className="c-select__control" disabled>
+									<option value=""></option>
+									{ finalOptions.map( ( option ) => (
+										<option
+											key={ option.value }
+											value={ option.value }
+										>
+											{ option.label }
+										</option>
+									) ) }
+								</select>
+								<span className="c-select__toggle"></span>
+							</div>
+						</div>
+					) }
+
+					{ ( 'text' === finalControlType ||
+						'number' === finalControlType ) && (
 						<input
-							type={ controlType }
+							type={ finalControlType }
 							className="c-form-control"
 							disabled
 						/>

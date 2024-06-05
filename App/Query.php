@@ -155,6 +155,9 @@ class Query {
 					if ( false === $meta_compare ) {
 						continue;
 					}
+					if ( is_array( $meta_value ) ) { // Maybe checks.
+						$meta_compare = 'IN';
+					}
 
 					$meta_type             = false;
 					$available_type_values = array(
@@ -171,22 +174,30 @@ class Query {
 						continue;
 					}
 
-					if ( 'date' === $meta_type ) {
-						$meta_value = gmdate( 'Y-m-d', strtotime( $meta_value ) );
+					if ( is_array( $meta_value ) ) { // Maybe checks.
+						foreach ( $meta_value as $meta_value_key => $meta_value_value ) {
+							if ( 'date' === $meta_type ) {
+								$meta_value[ $meta_value_key ] = gmdate( 'Y-m-d', strtotime( $meta_value_value ) );
+							} elseif ( 'datetime' === $meta_type ) {
+								$meta_value[ $meta_value_key ] = gmdate( 'Y-m-d H:i:s', strtotime( $meta_value_value ) );
+							} elseif ( 'time' === $meta_type ) {
+								$meta_value[ $meta_value_key ] = gmdate( 'H:i:s', strtotime( $meta_value_value ) );
+							}
+						}
+					} elseif ( 'date' === $meta_type ) { // or not.
+							$meta_value = gmdate( 'Y-m-d', strtotime( $meta_value ) );
 					} elseif ( 'datetime' === $meta_type ) {
 						$meta_value = gmdate( 'Y-m-d H:i:s', strtotime( $meta_value ) );
 					} elseif ( 'time' === $meta_type ) {
 						$meta_value = gmdate( 'H:i:s', strtotime( $meta_value ) );
 					}
 
-					if ( false !== $meta_value && $meta_compare && $meta_type ) {
-						$meta_query[] = array(
-							'key'     => $meta_key,
-							'value'   => $meta_value,
-							'compare' => $meta_compare,
-							'type'    => $meta_type,
-						);
-					}
+					$meta_query[] = array(
+						'key'     => $meta_key,
+						'value'   => $meta_value,
+						'compare' => $meta_compare,
+						'type'    => $meta_type,
+					);
 				}
 
 				if ( $meta_query ) {

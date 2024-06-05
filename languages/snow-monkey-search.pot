@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-06-05T00:41:20+00:00\n"
+"POT-Creation-Date: 2024-06-05T06:42:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: snow-monkey-search\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-search.php:151
-#: snow-monkey-search.php:236
+#: App/Register.php:61
+#: App/Register.php:146
 msgid "Snow Monkey Search"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Apply Filter"
 msgstr ""
 
-#: snow-monkey-search.php:565
+#: snow-monkey-search.php:126
 msgid "Sorry, but nothing matched your search terms."
 msgstr ""
 
@@ -64,36 +64,73 @@ msgid "Key"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 #: dist/blocks/period-search/index.js:4
-#: dist/blocks/taxonomy-search/index.js:1
 msgid "Type"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Control Type"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "For \"Text,\" depending on the \"Type,\" it will automatically change to the appropriate control. For \"Checkbox,\" \"Radio Button,\" and \"Select Box,\" you need to set the choices."
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "Text"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Checks"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Radios"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Select"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+msgid "options"
+msgstr ""
+
+#. translators: %1$s: line-break-char.
+#: dist/blocks/custom-field-search/index.js:4
+msgid "Required. Enter in the following format: \"value\" : \"label\"%1$s or value%1$s"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:4
 msgid "NUMERIC"
 msgstr ""
 
-#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 msgid "CHAR"
 msgstr ""
 
-#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 msgid "DATE"
 msgstr ""
 
-#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 msgid "DATETIME"
 msgstr ""
 
-#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 msgid "TIME"
 msgstr ""
 
-#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 msgid "Compare"
 msgstr ""
 
-#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
 #: dist/blocks/keyword-search/index.js:1
 #: dist/blocks/period-search/index.js:4
 #: dist/blocks/taxonomy-search/index.js:1
@@ -155,18 +192,6 @@ msgstr ""
 
 #: dist/blocks/search-box/index.js:1
 msgid "Custom post archives displaying this search box"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Checks"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Radios"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Select"
 msgstr ""
 
 #: dist/blocks/taxonomy-search/index.js:1
