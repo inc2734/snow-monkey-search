@@ -87,7 +87,16 @@ class Query {
 	 * @param WP_Query $query The query.
 	 */
 	public function _pre_get_posts_for_search( $query ) {
-		if ( $query->is_main_query() && ! is_admin() && ! is_null( filter_input( INPUT_GET, 'snow-monkey-search' ) ) ) {
+		if ( $query->is_main_query() && ! is_admin() ) {
+			$post_type = static::is_archive( $query );
+			if ( ! $post_type ) {
+				return;
+			}
+
+			if ( is_null( filter_input( INPUT_GET, 'snow-monkey-search' ) ) ) {
+				return;
+			}
+
 			$query->is_search = false;
 
 			// Taxonomy query.
@@ -283,10 +292,14 @@ class Query {
 	 */
 	public static function is_archive( $query ) {
 		$is_post_type_archive = $query->is_post_type_archive();
-		$is_tax_ex            = $query->is_tax() || $query->is_category() || $query->is_tag();
 		$is_home              = $query->is_home();
+		$is_tax_ex            = $query->is_tax() || $query->is_category() || $query->is_tag();
 
-		if ( ! $is_post_type_archive && ! $is_tax_ex && ! $is_home ) {
+		if ( $is_tax_ex ) {
+			return false;
+		}
+
+		if ( ! $is_post_type_archive && ! $is_home ) {
 			return false;
 		}
 
@@ -296,13 +309,6 @@ class Query {
 
 		if ( $is_home ) {
 			return 'post';
-		}
-
-		if ( $is_tax_ex ) {
-			$queried_object = $query->get_queried_object();
-			$the_taxonomy   = get_taxonomy( $queried_object->taxonomy );
-
-			return $the_taxonomy->object_type[0] ?? false;
 		}
 
 		return false;
