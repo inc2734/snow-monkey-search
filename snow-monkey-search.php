@@ -10,6 +10,7 @@
  * Text Domain: snow-monkey-search
  * Requires at least: 6.5
  * Requires PHP: 7.4
+ * Requires Snow Monkey: 25.4.6
  *
  * @package snow-monkey-search
  * @author inc2734
@@ -47,6 +48,60 @@ class Bootstrap {
 	public function _plugins_loaded() {
 		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
 		load_plugin_textdomain( 'snow-monkey-search', false, basename( SNOW_MONKEY_SEARCH_PATH ) . '/languages' );
+
+		$theme = wp_get_theme( get_template() );
+		if ( 'snow-monkey' !== $theme->template ) {
+			add_action(
+				'admin_notices',
+				function () {
+					?>
+					<div class="notice notice-warning is-dismissible">
+						<p>
+							<?php esc_html_e( '[Snow Monkey Search] Needs the Snow Monkey.', 'snow-monkey-search' ); ?>
+						</p>
+					</div>
+					<?php
+				}
+			);
+			return;
+		}
+
+		$data = get_file_data(
+			__FILE__,
+			array(
+				'RequiresSnowMonkey' => 'Requires Snow Monkey',
+			)
+		);
+
+		if (
+			isset( $data['RequiresSnowMonkey'] ) &&
+			version_compare( $theme->get( 'Version' ), $data['RequiresSnowMonkey'], '<' )
+		) {
+			add_action(
+				'admin_notices',
+				function () use ( $data ) {
+					?>
+					<div class="notice notice-warning is-dismissible">
+						<p>
+							<?php
+							echo esc_html(
+								sprintf(
+									// translators: %1$s: version.
+									__(
+										'[Snow Monkey Search] Needs the Snow Monkey %1$s or more.',
+										'snow-monkey-search'
+									),
+									'v' . $data['RequiresSnowMonkey']
+								)
+							);
+							?>
+						</p>
+					</div>
+					<?php
+				}
+			);
+			return;
+		}
 
 		add_action( 'snow_monkey_prepend_archive_entry_content', array( $this, '_display_search_box' ) );
 		add_action( 'wp', array( $this, '_update_view' ) );

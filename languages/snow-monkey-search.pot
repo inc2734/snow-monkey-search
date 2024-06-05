@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-06-05T06:42:44+00:00\n"
+"POT-Creation-Date: 2024-06-05T07:08:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: snow-monkey-search\n"
@@ -47,7 +47,16 @@ msgstr ""
 msgid "Apply Filter"
 msgstr ""
 
-#: snow-monkey-search.php:126
+#: snow-monkey-search.php:60
+msgid "[Snow Monkey Search] Needs the Snow Monkey."
+msgstr ""
+
+#. translators: %1$s: version.
+#: snow-monkey-search.php:90
+msgid "[Snow Monkey Search] Needs the Snow Monkey %1$s or more."
+msgstr ""
+
+#: snow-monkey-search.php:181
 msgid "Sorry, but nothing matched your search terms."
 msgstr ""
 

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Search 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "search\n"
-"POT-Creation-Date: 2024-06-05T06:42:44+00:00\n"
-"PO-Revision-Date: 2024-06-05 15:44+0900\n"
+"POT-Creation-Date: 2024-06-05T07:08:26+00:00\n"
+"PO-Revision-Date: 2024-06-05 16:12+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -49,7 +49,16 @@ msgstr "絞り込みをクリア"
 msgid "Apply Filter"
 msgstr "この条件で検索"
 
-#: snow-monkey-search.php:126
+#: snow-monkey-search.php:60
+msgid "[Snow Monkey Search] Needs the Snow Monkey."
+msgstr "[Snow Monkey Search] Snow Monkey が必要です。"
+
+#. translators: %1$s: version.
+#: snow-monkey-search.php:90
+msgid "[Snow Monkey Search] Needs the Snow Monkey %1$s or more."
+msgstr "[Snow Monkey Search] Snow Monkey %1$s 以上が必要です。"
+
+#: snow-monkey-search.php:181
 msgid "Sorry, but nothing matched your search terms."
 msgstr "ご指定の検索条件に合う投稿がありませんでした。"
 
