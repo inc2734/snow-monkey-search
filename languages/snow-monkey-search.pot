@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-06-04T07:05:32+00:00\n"
+"POT-Creation-Date: 2024-06-05T00:41:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: snow-monkey-search\n"
 
 #. Plugin Name of the plugin
 #: snow-monkey-search.php:151
-#: snow-monkey-search.php:229
+#: snow-monkey-search.php:236
 msgid "Snow Monkey Search"
 msgstr ""
 
@@ -32,17 +32,22 @@ msgstr ""
 msgid "https://2inc.org"
 msgstr ""
 
-#: dist/blocks/period-search/render.php:54
+#: dist/blocks/period-search/render.php:56
 #: dist/blocks/period-search/index.js:4
 msgid "〜"
 msgstr ""
 
 #: dist/blocks/search-box/render.php:41
 #: dist/blocks/search-box/index.js:1
-msgid "Search"
+msgid "Clear Filter"
 msgstr ""
 
-#: snow-monkey-search.php:541
+#: dist/blocks/search-box/render.php:45
+#: dist/blocks/search-box/index.js:1
+msgid "Apply Filter"
+msgstr ""
+
+#: snow-monkey-search.php:565
 msgid "Sorry, but nothing matched your search terms."
 msgstr ""
 

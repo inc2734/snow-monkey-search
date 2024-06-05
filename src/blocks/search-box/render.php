@@ -37,8 +37,12 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-search-box
 
 		<input type="hidden" name="snow-monkey-search" value="<?php the_ID(); ?>" />
 
-		<button type="submit">
-			<?php esc_html_e( 'Search', 'snow-monkey-search' ); ?>
+		<button type="button" id="sms-clear" class="sms-search-box__clear">
+			<?php esc_html_e( 'Clear Filter', 'snow-monkey-search' ); ?>
+		</button>
+
+		<button type="submit" class="c-btn sms-search-box__submit">
+			<?php esc_html_e( 'Apply Filter', 'snow-monkey-search' ); ?>
 		</button>
 	</div>
 </form>

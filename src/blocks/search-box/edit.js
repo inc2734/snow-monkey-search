@@ -103,7 +103,16 @@ export default function ( { attributes, setAttributes, clientId } ) {
 				<div { ...innerBlocksProps } />
 
 				<div className="sms-search-box__action">
-					<button>{ __( 'Search', 'snow-monkey-search' ) }</button>
+					<button className="sms-search-box__clear" type="button">
+						{ __( 'Clear Filter', 'snow-monkey-search' ) }
+					</button>
+
+					<button
+						className="c-btn sms-search-box__submit"
+						type="button"
+					>
+						{ __( 'Apply Filter', 'snow-monkey-search' ) }
+					</button>
 				</div>
 			</div>
 		</>

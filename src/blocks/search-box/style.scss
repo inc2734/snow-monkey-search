@@ -1,6 +1,28 @@
 .sms-search-box {
+	padding: 0 !important;
+
+	&.has-background,
+	&.has-border-color {
+		--sms--padding: var(--_padding1);
+
+		.sms-search-box__content {
+			padding: var(--sms--padding);
+		}
+
+		.sms-search-box__action {
+			margin-top: 0;
+			padding: var(--_padding-1) var(--sms--padding);
+		}
+	}
+
+	&.has-border-color {
+		.sms-search-box__action {
+			border-top: inherit;
+		}
+	}
+
 	&__content {
-		--sms--gap: var(--_margin1) var(--_margin2);
+		--sms--gap: var(--_margin-1) var(--_margin2);
 
 		display: flex;
 		flex-wrap: wrap;
@@ -9,6 +31,25 @@
 
 	&__action {
 		margin-top: var(--_margin1);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.c-btn {
+			min-width: min(20em, 100%);
+		}
+	}
+
+	&__clear {
+		appearance: none;
+		cursor: pointer;
+		border: none;
+		background-color: transparent;
+		color: var(--wp--preset--color--sm-accent);
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 

@@ -167,6 +167,13 @@ class Bootstrap {
 						'snow-monkey-search/search-box',
 						array(
 							'relatedPostType' => 'post',
+							'style'           => array(
+								'border' => array(
+									'width' => '1px',
+								),
+							),
+							'borderColor'     => 'sm-light-gray',
+							'backgroundColor' => 'sm-lightest-gray',
 							'lock'            => array(
 								'move'   => true,
 								'remove' => true,
@@ -425,6 +432,9 @@ class Bootstrap {
 					if ( isset( $meta_set['value'] ) && '' !== $meta_set['value'] && false !== $meta_set['value'] ) {
 						$meta_value = $meta_set['value'];
 					}
+					if ( false === $meta_value ) {
+						continue;
+					}
 
 					$meta_compare             = false;
 					$available_compare_values = array(
@@ -440,6 +450,9 @@ class Bootstrap {
 					if ( isset( $meta_set['compare'] ) && in_array( $meta_set['compare'], $available_compare_values, true ) ) {
 						$meta_compare = $meta_set['compare'];
 					}
+					if ( false === $meta_compare ) {
+						continue;
+					}
 
 					$meta_type             = false;
 					$available_type_values = array(
@@ -451,14 +464,17 @@ class Bootstrap {
 					);
 					if ( isset( $meta_set['type'] ) && in_array( $meta_set['type'], $available_type_values, true ) ) {
 						$meta_type = $meta_set['type'];
+					}
+					if ( false === $meta_type ) {
+						continue;
+					}
 
-						if ( 'date' === $meta_type ) {
-							$meta_value = gmdate( 'Y-m-d', strtotime( $meta_value ) );
-						} elseif ( 'datetime' === $meta_type ) {
-							$meta_value = gmdate( 'Y-m-d H:i:s', strtotime( $meta_value ) );
-						} elseif ( 'time' === $meta_type ) {
-							$meta_value = gmdate( 'H:i:s', strtotime( $meta_value ) );
-						}
+					if ( 'date' === $meta_type ) {
+						$meta_value = gmdate( 'Y-m-d', strtotime( $meta_value ) );
+					} elseif ( 'datetime' === $meta_type ) {
+						$meta_value = gmdate( 'Y-m-d H:i:s', strtotime( $meta_value ) );
+					} elseif ( 'time' === $meta_type ) {
+						$meta_value = gmdate( 'H:i:s', strtotime( $meta_value ) );
 					}
 
 					if ( false !== $meta_value && $meta_compare && $meta_type ) {
