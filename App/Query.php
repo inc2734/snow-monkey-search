@@ -26,9 +26,12 @@ class Query {
 	public function _pre_get_posts_for_archive( $query ) {
 		if ( $query->is_main_query() && ! is_admin() ) {
 			$post_type = static::is_archive( $query );
-			if ( ! $post_type ) {
+			$is_search = static::is_search( $query );
+			if ( ! $post_type && ! $is_search ) {
 				return;
 			}
+
+			$post_type = $post_type ?: 'post';
 
 			$includes_future_posts = $this->_includes_future_posts( $post_type );
 			if ( ! $includes_future_posts ) {
@@ -89,7 +92,8 @@ class Query {
 	public function _pre_get_posts_for_search( $query ) {
 		if ( $query->is_main_query() && ! is_admin() ) {
 			$post_type = static::is_archive( $query );
-			if ( ! $post_type ) {
+			$is_search = static::is_search( $query );
+			if ( ! $post_type && ! $is_search ) {
 				return;
 			}
 
@@ -98,6 +102,9 @@ class Query {
 			}
 
 			$query->is_search = false;
+			if ( ! $post_type ) {
+				$query->is_home = true;
+			}
 
 			// Taxonomy query.
 			$taxonomies = filter_input( INPUT_GET, 'sms-taxonomies', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
@@ -282,6 +289,16 @@ class Query {
 	 */
 	protected function _includes_future_posts( $post_type ) {
 		return apply_filters( 'sms_includes_future_posts', false, $post_type );
+	}
+
+	/**
+	 * When using the blog type, a narrowed search for "post" will take you to the search results page.
+	 *
+	 * @param WP_Query $query WP_Query.
+	 * @return string|false.
+	 */
+	public static function is_search( $query ) {
+		return $query->is_search() && null !== filter_input( INPUT_GET, 'snow-monkey-search' );
 	}
 
 	/**

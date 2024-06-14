@@ -139,7 +139,8 @@ class Bootstrap {
 		global $wp_query;
 
 		$post_type = App\Query::is_archive( $wp_query );
-		if ( ! $post_type ) {
+		$is_search = App\Query::is_search( $wp_query );
+		if ( ! $post_type && ! $is_search ) {
 			return;
 		}
 
@@ -152,7 +153,7 @@ class Bootstrap {
 				'meta_query'       => array(
 					array(
 						'key'     => 'sms_related_post_type',
-						'value'   => $post_type,
+						'value'   => $post_type ?: 'post',
 						'compare' => 'IN',
 					),
 				),
@@ -185,7 +186,11 @@ class Bootstrap {
 
 		add_filter(
 			'snow_monkey_view',
-			function () {
+			function ( $view ) {
+				if ( is_home() ) {
+					return $view;
+				}
+
 				if ( have_posts() ) {
 					global $wp_query;
 
@@ -202,10 +207,7 @@ class Bootstrap {
 					);
 				}
 
-				return array(
-					'slug' => 'templates/view/no-match',
-					'name' => '',
-				);
+				return $view;
 			}
 		);
 	}
