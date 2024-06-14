@@ -5,6 +5,7 @@
 	"name": "snow-monkey-search/taxonomy-search",
 	"title": "Taxonomy Search",
 	"category": "snow-monkey-search",
+	"parent": [ "snow-monkey-search/item" ],
 	"attributes": {
 		"label": {
 			"type": "string",

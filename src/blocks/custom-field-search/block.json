@@ -5,6 +5,7 @@
 	"name": "snow-monkey-search/custom-field-search",
 	"title": "Custom Field Search",
 	"category": "snow-monkey-search",
+	"parent": [ "snow-monkey-search/item" ],
 	"attributes": {
 		"label": {
 			"type": "string",

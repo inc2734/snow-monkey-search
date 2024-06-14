@@ -5,6 +5,7 @@
 	"name": "snow-monkey-search/keyword-search",
 	"title": "Keyword Search",
 	"category": "snow-monkey-search",
+	"parent": [ "snow-monkey-search/item" ],
 	"attributes": {
 		"label": {
 			"type": "string",
