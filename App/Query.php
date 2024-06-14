@@ -31,7 +31,9 @@ class Query {
 				return;
 			}
 
-			$post_type = $post_type ?: 'post';
+			if ( ! $post_type ) {
+				$post_type = 'post';
+			}
 
 			$includes_future_posts = $this->_includes_future_posts( $post_type );
 			if ( ! $includes_future_posts ) {

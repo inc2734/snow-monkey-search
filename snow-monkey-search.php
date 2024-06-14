@@ -105,6 +105,7 @@ class Bootstrap {
 
 		add_action( 'snow_monkey_prepend_archive_entry_content', array( $this, '_display_search_box' ) );
 		add_action( 'wp', array( $this, '_update_view' ) );
+		add_action( 'template_redirect', array( $this, '_template_redirect' ) );
 
 		new App\Rest();
 		new App\Register();
@@ -153,7 +154,7 @@ class Bootstrap {
 				'meta_query'       => array(
 					array(
 						'key'     => 'sms_related_post_type',
-						'value'   => $post_type ?: 'post',
+						'value'   => $post_type ? $post_type : 'post',
 						'compare' => 'IN',
 					),
 				),
@@ -210,6 +211,29 @@ class Bootstrap {
 				return $view;
 			}
 		);
+	}
+
+	/**
+	 * If the paging destination does not exist, redirect to the first page.
+	 */
+	public function _template_redirect() {
+		global $wp_query;
+
+		if ( is_null( filter_input( INPUT_GET, 'snow-monkey-search' ) ) ) {
+			return;
+		}
+
+		if ( is_404() && 1 < get_query_var( 'paged' ) ) {
+			$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			if ( $request_uri ) {
+				$redirect = home_url( $request_uri );
+				$redirect = preg_replace( '|/page/\d+|', '', $redirect );
+				$redirect = preg_replace( '|paged=\d+|', '', $redirect );
+
+				wp_safe_redirect( $redirect );
+				exit;
+			}
+		}
 	}
 }
 

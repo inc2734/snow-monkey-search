@@ -19,9 +19,23 @@ if ( is_tax() || is_category() || is_tag() ) {
 }
 
 $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-search-box' ) );
+
+$action_to   = '';
+$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+if ( $request_uri ) {
+	$action_to = home_url( $request_uri );
+	$action_to = preg_replace( '|/page/\d+|', '', $action_to );
+	$action_to = preg_replace( '|paged=\d+|', '', $action_to );
+}
 ?>
 
-<form <?php echo $block_wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> method="get">
+<form
+	<?php echo $block_wrapper; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	method="get"
+	<?php if ( $action_to ) : ?>
+		action="<?php echo esc_url( $action_to ); ?>"
+	<?php endif; ?>
+>
 	<div class="sms-search-box__content">
 		<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
