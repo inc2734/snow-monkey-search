@@ -32,6 +32,8 @@
 	&__action {
 		margin-top: var(--_margin1);
 		display: flex;
+		gap: var(--_margin-2);
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 
