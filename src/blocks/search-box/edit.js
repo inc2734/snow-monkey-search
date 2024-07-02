@@ -9,7 +9,6 @@ import {
 import { useEntityProp, store as coreStore } from '@wordpress/core-data';
 import { PanelBody, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
-import { store as editorStore } from '@wordpress/editor';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -37,7 +36,7 @@ export default function ( { attributes, setAttributes, clientId } ) {
 	} );
 
 	const currentPostType = useSelect(
-		( select ) => select( editorStore ).getCurrentPostType(),
+		( select ) => select( 'core/editor' ).getCurrentPostType(),
 		[]
 	);
 	const [ meta, setMeta ] = useEntityProp(
