@@ -79,7 +79,10 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-taxonomy-s
 
 	<div class="sms-taxonomy-search__content sms-form-control__content">
 		<?php if ( 'checks' === $attributes['controlType'] ) : ?>
-			<div class="sms-checkboxes">
+			<div
+				class="sms-checkboxes sms-is-layout-<?php echo esc_attr( $attributes['flow'] ); ?>"
+				style="<?php echo esc_attr( $attributes['itemMinWidth'] ? '--sms--item-min-width:' . $attributes['itemMinWidth'] : '' ); ?>"
+			>
 				<?php foreach ( $terms as $_term ) : ?>
 					<label>
 						<span class="c-checkbox">
@@ -100,7 +103,10 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-taxonomy-s
 		<?php endif; ?>
 
 		<?php if ( 'radios' === $attributes['controlType'] ) : ?>
-			<div class="sms-radios">
+			<div
+				class="sms-radios sms-is-layout-<?php echo esc_attr( $attributes['flow'] ); ?>"
+				style="<?php echo esc_attr( $attributes['itemMinWidth'] ? '--sms--item-min-width:' . $attributes['itemMinWidth'] : '' ); ?>"
+			>
 				<?php foreach ( $terms as $_term ) : ?>
 					<label>
 						<span class="c-radio">

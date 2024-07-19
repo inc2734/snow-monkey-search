@@ -8,6 +8,7 @@ import {
 	SelectControl,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 
 import { store as coreStore } from '@wordpress/core-data';
@@ -18,7 +19,8 @@ import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 
 export default function ( { attributes, setAttributes, context } ) {
-	const { label, controlType, postType, taxonomy } = attributes;
+	const { label, controlType, postType, taxonomy, flow, itemMinWidth } =
+		attributes;
 
 	// Reset the taxonomy once the post type has been switched in the search box.
 	useEffect( () => {
@@ -128,6 +130,88 @@ export default function ( { attributes, setAttributes, context } ) {
 						/>
 					</ToolsPanelItem>
 
+					{ [ 'checks', 'radios' ].includes( controlType ) && (
+						<ToolsPanelItem
+							hasValue={ () =>
+								flow !== metadata.attributes.flow.default
+							}
+							isShownByDefault
+							label={ __( 'Flow', 'snow-monkey-search' ) }
+							onDeselect={ () =>
+								setAttributes( {
+									flow: metadata.attributes.flow.default,
+								} )
+							}
+						>
+							<SelectControl
+								label={ __( 'Flow', 'snow-monkey-search' ) }
+								value={ flow }
+								onChange={ ( newAttribute ) => {
+									setAttributes( {
+										flow: newAttribute,
+									} );
+								} }
+								options={ [
+									{
+										label: __(
+											'Inline',
+											'snow-monkey-search'
+										),
+										value: 'inline',
+									},
+									{
+										label: __(
+											'Stack',
+											'snow-monkey-search'
+										),
+										value: 'stack',
+									},
+									{
+										label: __(
+											'Grid',
+											'snow-monkey-search'
+										),
+										value: 'grid',
+									},
+								] }
+							/>
+						</ToolsPanelItem>
+					) }
+
+					{ 'grid' === flow && (
+						<ToolsPanelItem
+							hasValue={ () =>
+								itemMinWidth !==
+								metadata.attributes.itemMinWidth.default
+							}
+							isShownByDefault
+							label={ __(
+								'Item Minimum Width',
+								'snow-monkey-search'
+							) }
+							onDeselect={ () =>
+								setAttributes( {
+									itemMinWidth:
+										metadata.attributes.itemMinWidth
+											.default,
+								} )
+							}
+						>
+							<UnitControl
+								label={ __(
+									'Item Minimum Width',
+									'snow-monkey-search'
+								) }
+								value={ itemMinWidth }
+								onChange={ ( newAttribute ) => {
+									setAttributes( {
+										itemMinWidth: newAttribute,
+									} );
+								} }
+							/>
+						</ToolsPanelItem>
+					) }
+
 					<ToolsPanelItem
 						hasValue={ () =>
 							taxonomy !== metadata.attributes.taxonomy.default
@@ -212,7 +296,13 @@ export default function ( { attributes, setAttributes, context } ) {
 
 							<div className="sms-taxonomy-search__content sms-form-control__content">
 								{ 'checks' === controlType && (
-									<div className="sms-checkboxes">
+									<div
+										className={ `sms-checkboxes sms-is-layout-${ flow }` }
+										style={ {
+											'--sms--item-min-width':
+												itemMinWidth || undefined,
+										} }
+									>
 										{ terms.map( ( term ) => (
 											<label key={ term.slug }>
 												<span className="c-checkbox">
@@ -232,7 +322,13 @@ export default function ( { attributes, setAttributes, context } ) {
 								) }
 
 								{ 'radios' === controlType && (
-									<div className="sms-radios">
+									<div
+										className={ `sms-radios sms-is-layout-${ flow }` }
+										style={ {
+											'--sms--item-min-width':
+												itemMinWidth || undefined,
+										} }
+									>
 										{ terms.map( ( term ) => (
 											<label key={ term.slug }>
 												<span className="c-radio">

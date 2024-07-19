@@ -22,6 +22,14 @@
 		"taxonomy": {
 			"type": "string",
 			"default": ""
+		},
+		"flow": {
+			"type": "string",
+			"default": "inline"
+		},
+		"itemMinWidth": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"usesContext": [ "snow-monkey-search/relatedPostType" ],

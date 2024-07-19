@@ -8,9 +8,10 @@
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: snow-monkey-search
- * Requires at least: 6.5
+ * Requires at least: 6.6
+ * Tested up to: 6.6
  * Requires PHP: 7.4
- * Requires Snow Monkey: 25.4.6
+ * Requires Snow Monkey: 26.0.0
  *
  * @package snow-monkey-search
  * @author inc2734

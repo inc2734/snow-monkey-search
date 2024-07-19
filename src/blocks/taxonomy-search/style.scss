@@ -2,28 +2,12 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0 var(--_margin-1);
-
-	.c-checkbox {
-		gap: var(--_margin-2);
-	}
-
-	.c-checkbox__control {
-		margin: 0;
-	}
 }
 
 .sms-radios {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0 var(--_margin-1);
-
-	.c-radio {
-		gap: var(--_margin-2);
-	}
-
-	.c-radio__control {
-		margin: 0;
-	}
 }
 
 .sms-select {
@@ -31,4 +15,20 @@
 	.c-select__control {
 		width: 100%;
 	}
+}
+
+.sms-is-layout-inline {
+	flex-direction: row;
+}
+
+.sms-is-layout-stack {
+	flex-direction: column;
+}
+
+.sms-is-layout-grid {
+	--sms--item-min-width: 100px;
+
+	display: grid;
+	gap: 0 var(--_margin-1);
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--sms--item-min-width), 100%), 1fr));
 }
