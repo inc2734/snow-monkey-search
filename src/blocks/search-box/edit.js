@@ -13,7 +13,7 @@ import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 export default function ( { attributes, setAttributes, clientId } ) {
-	const { relatedPostType } = attributes;
+	const { relatedPostType, displayArea } = attributes;
 
 	const hasInnerBlocks = useSelect(
 		( select ) =>
@@ -45,13 +45,29 @@ export default function ( { attributes, setAttributes, clientId } ) {
 		'meta'
 	);
 
+	// Set initial display area to meta.
 	useEffect( () => {
-		// Meta is required for form calls.
+		if ( ! meta?.sms_display_area ) {
+			setMeta( {
+				...meta,
+				sms_display_area: displayArea,
+			} );
+		}
+	}, [] );
+
+	useEffect( () => {
 		setMeta( {
 			...meta,
 			sms_related_post_type: relatedPostType,
 		} );
 	}, [ relatedPostType ] );
+
+	useEffect( () => {
+		setMeta( {
+			...meta,
+			sms_display_area: displayArea,
+		} );
+	}, [ displayArea ] );
 
 	const blockProps = useBlockProps( {
 		className: 'sms-search-box',
@@ -93,6 +109,26 @@ export default function ( { attributes, setAttributes, clientId } ) {
 								label: postType.name,
 								value: postType.slug,
 							} ) ),
+						] }
+					/>
+
+					<SelectControl
+						label={ __( 'Display Area', 'snow-monkey-search' ) }
+						value={ displayArea }
+						onChange={ ( newAttribute ) => {
+							setAttributes( {
+								displayArea: newAttribute,
+							} );
+						} }
+						options={ [
+							{
+								label: __( 'Main', 'snow-monkey-search' ),
+								value: 'main',
+							},
+							{
+								label: __( 'Sidebar', 'snow-monkey-search' ),
+								value: 'sidebar',
+							},
 						] }
 					/>
 				</PanelBody>

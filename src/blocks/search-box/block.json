@@ -11,6 +11,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"displayArea": {
+			"type": "string",
+			"default": "main"
+		},
 		"templateLock": {
 			"type": [ "string", "boolean" ],
 			"enum": [ "all", "insert", "contentOnly", false ]

@@ -104,7 +104,8 @@ class Bootstrap {
 			return;
 		}
 
-		add_action( 'snow_monkey_prepend_archive_entry_content', array( $this, '_display_search_box' ) );
+		add_action( 'snow_monkey_prepend_archive_entry_content', array( $this, '_display_search_box_to_main' ) );
+		add_action( 'snow_monkey_prepend_sidebar', array( $this, '_display_search_box_to_sidebar' ) );
 		add_action( 'wp', array( $this, '_update_view' ) );
 		add_action( 'template_redirect', array( $this, '_template_redirect' ) );
 
@@ -135,9 +136,9 @@ class Bootstrap {
 	}
 
 	/**
-	 * Display search box.
+	 * Display search box to main area.
 	 */
-	public function _display_search_box() {
+	public function _display_search_box_to_main() {
 		global $wp_query;
 
 		$post_type = App\Query::is_archive( $wp_query );
@@ -157,6 +158,51 @@ class Bootstrap {
 						'key'     => 'sms_related_post_type',
 						'value'   => $post_type ? $post_type : 'post',
 						'compare' => 'IN',
+					),
+					array(
+						'key'     => 'sms_display_area',
+						'value'   => 'main',
+						'compare' => '=',
+					),
+				),
+			)
+		);
+
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			the_content();
+		}
+		wp_reset_postdata();
+	}
+
+	/**
+	 * Display search box to sidebar area.
+	 */
+	public function _display_search_box_to_sidebar() {
+		global $wp_query;
+
+		$post_type = App\Query::is_archive( $wp_query );
+		$is_search = App\Query::is_search( $wp_query );
+		if ( ! $post_type && ! $is_search ) {
+			return;
+		}
+
+		$the_query = new \WP_Query(
+			array(
+				'post_type'        => 'snow-monkey-search',
+				'posts_per_page'   => 1,
+				'suppress_filters' => false,
+				'no_found_rows'    => true,
+				'meta_query'       => array(
+					array(
+						'key'     => 'sms_related_post_type',
+						'value'   => $post_type ? $post_type : 'post',
+						'compare' => 'IN',
+					),
+					array(
+						'key'     => 'sms_display_area',
+						'value'   => 'sidebar',
+						'compare' => '=',
 					),
 				),
 			)

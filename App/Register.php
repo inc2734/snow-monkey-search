@@ -55,6 +55,20 @@ class Register {
 			)
 		);
 
+		register_post_meta(
+			'snow-monkey-search',
+			'sms_display_area',
+			array(
+				'show_in_rest'      => true,
+				'type'              => 'string',
+				'single'            => true,
+				'sanitize_callback' => 'sanitize_text_field',
+				'auth_callback'     => function () {
+					return current_user_can( 'manage_options' );
+				},
+			)
+		);
+
 		register_post_type(
 			'snow-monkey-search',
 			array(
