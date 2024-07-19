@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: Snow Monkey Search
- * Version: 0.1.1
+ * Version: 0.1.2
  * Description: This plugin places a filtered search form in Snow Monkey's custom post archives.
  * Author: inc2734
  * Author URI: https://2inc.org
@@ -19,8 +19,6 @@
  */
 
 namespace Snow_Monkey\Plugin\Search;
-
-use Inc2734\WP_GitHub_Plugin_Updater\Bootstrap as Updater;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -52,7 +50,7 @@ class Bootstrap {
 		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
 		load_plugin_textdomain( 'snow-monkey-search', false, basename( SNOW_MONKEY_SEARCH_PATH ) . '/languages' );
 
-		add_action( 'init', array( $this, '_activate_autoupdate' ) );
+		new App\Updater();
 
 		$theme = wp_get_theme( get_template() );
 		if ( 'snow-monkey' !== $theme->template ) {
@@ -285,20 +283,6 @@ class Bootstrap {
 				exit;
 			}
 		}
-	}
-
-	/**
-	 * Activate auto update using GitHub.
-	 */
-	public function _activate_autoupdate() {
-		new Updater(
-			plugin_basename( __FILE__ ),
-			'inc2734',
-			'snow-monkey-search',
-			array(
-				'homepage' => 'https://snow-monkey.2inc.org',
-			)
-		);
 	}
 }
 
