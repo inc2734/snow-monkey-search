@@ -47,15 +47,15 @@ export default function ( { attributes, setAttributes, context } ) {
 
 	// Get post meta keys with post type.
 	useEffect( () => {
+		setKeys( [] );
+
 		apiFetch( {
-			path: `/snow-monkey-search/v1/post-meta-keys/${
-				postType || context[ 'snow-monkey-search/relatedPostType' ]
-			}`,
+			path: `/snow-monkey-search/v1/post-meta-keys/${ context[ 'snow-monkey-search/relatedPostType' ] }`,
 			method: 'GET',
 		} ).then( ( v ) => {
 			setKeys( v );
 		} );
-	}, [ context[ 'snow-monkey-search/relatedPostType' ], postType ] );
+	}, [ context[ 'snow-monkey-search/relatedPostType' ] ] );
 
 	// Set default label.
 	useEffect( () => {

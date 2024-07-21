@@ -35,7 +35,7 @@ class Rest {
 
 					$post_meta_keys = array_keys( $wp_meta_keys['post'][ $post_type ] ?? array() );
 					if ( empty( $post_meta_keys ) ) {
-						return new \WP_REST_Response( array( 'message' => 'No post meta keys found' ), 404 );
+						return array();
 					}
 
 					return $post_meta_keys;
