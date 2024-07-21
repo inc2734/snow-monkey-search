@@ -9,6 +9,7 @@ import {
 	TextareaControl,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
+	__experimentalUnitControl as UnitControl,
 } from '@wordpress/components';
 
 import { useEffect, useState } from '@wordpress/element';
@@ -21,8 +22,17 @@ import { optionsToJsonArray } from './helper';
 import metadata from './block.json';
 
 export default function ( { attributes, setAttributes, context } ) {
-	const { label, key, postType, controlType, options, compare, type } =
-		attributes;
+	const {
+		label,
+		key,
+		postType,
+		controlType,
+		options,
+		compare,
+		type,
+		flow,
+		itemMinWidth,
+	} = attributes;
 
 	const [ keys, setKeys ] = useState( [] );
 	const [ finalControlType, setFinalControlType ] = useState( controlType );
@@ -164,7 +174,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							metadata.attributes.controlType.default
 						}
 						isShownByDefault
-						label={ __( 'Type', 'snow-monkey-search' ) }
+						label={ __( 'Control Type', 'snow-monkey-search' ) }
 						onDeselect={ () =>
 							setAttributes( {
 								controlType:
@@ -204,6 +214,88 @@ export default function ( { attributes, setAttributes, context } ) {
 							] }
 						/>
 					</ToolsPanelItem>
+
+					{ [ 'checks', 'radios' ].includes( controlType ) && (
+						<ToolsPanelItem
+							hasValue={ () =>
+								flow !== metadata.attributes.flow.default
+							}
+							isShownByDefault
+							label={ __( 'Flow', 'snow-monkey-search' ) }
+							onDeselect={ () =>
+								setAttributes( {
+									flow: metadata.attributes.flow.default,
+								} )
+							}
+						>
+							<SelectControl
+								label={ __( 'Flow', 'snow-monkey-search' ) }
+								value={ flow }
+								onChange={ ( newAttribute ) => {
+									setAttributes( {
+										flow: newAttribute,
+									} );
+								} }
+								options={ [
+									{
+										label: __(
+											'Inline',
+											'snow-monkey-search'
+										),
+										value: 'inline',
+									},
+									{
+										label: __(
+											'Stack',
+											'snow-monkey-search'
+										),
+										value: 'stack',
+									},
+									{
+										label: __(
+											'Grid',
+											'snow-monkey-search'
+										),
+										value: 'grid',
+									},
+								] }
+							/>
+						</ToolsPanelItem>
+					) }
+
+					{ 'grid' === flow && (
+						<ToolsPanelItem
+							hasValue={ () =>
+								itemMinWidth !==
+								metadata.attributes.itemMinWidth.default
+							}
+							isShownByDefault
+							label={ __(
+								'Item Minimum Width',
+								'snow-monkey-search'
+							) }
+							onDeselect={ () =>
+								setAttributes( {
+									itemMinWidth:
+										metadata.attributes.itemMinWidth
+											.default,
+								} )
+							}
+						>
+							<UnitControl
+								label={ __(
+									'Item Minimum Width',
+									'snow-monkey-search'
+								) }
+								value={ itemMinWidth }
+								onChange={ ( newAttribute ) => {
+									setAttributes( {
+										itemMinWidth: newAttribute,
+									} );
+								} }
+							/>
+						</ToolsPanelItem>
+					) }
 
 					<ToolsPanelItem
 						hasValue={ () =>
@@ -380,7 +472,13 @@ export default function ( { attributes, setAttributes, context } ) {
 					) }
 
 					{ 'checks' === finalControlType && (
-						<div className="sms-checkboxes">
+						<div
+							className={ `sms-checkboxes sms-is-layout-${ flow }` }
+							style={ {
+								'--sms--item-min-width':
+									itemMinWidth || undefined,
+							} }
+						>
 							{ finalOptions.map( ( option ) => (
 								<label key={ option.value }>
 									<span className="c-checkbox">
@@ -400,7 +498,13 @@ export default function ( { attributes, setAttributes, context } ) {
 					) }
 
 					{ 'radios' === finalControlType && (
-						<div className="sms-radios">
+						<div
+							className={ `sms-radios sms-is-layout-${ flow }` }
+							style={ {
+								'--sms--item-min-width':
+									itemMinWidth || undefined,
+							} }
+						>
 							{ finalOptions.map( ( option ) => (
 								<label key={ option.value }>
 									<span className="c-radio">

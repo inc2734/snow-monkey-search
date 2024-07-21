@@ -34,6 +34,14 @@
 		"type": {
 			"type": "string",
 			"default": "char"
+		},
+		"flow": {
+			"type": "string",
+			"default": "inline"
+		},
+		"itemMinWidth": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"usesContext": [ "snow-monkey-search/relatedPostType" ],

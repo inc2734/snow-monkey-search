@@ -56,9 +56,11 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-custom-fie
 	<?php endif; ?>
 
 	<div class="sms-custom-field-search__content sms-form-control__content">
-		<?php // @todo チェックボックスのときは複数選択ができるから、OR 検索になるようにする必要がある。checked の対応も必要。 ?>
 		<?php if ( 'checks' === $control_type ) : ?>
-			<div class="sms-checkboxes">
+			<div
+				class="sms-checkboxes sms-is-layout-<?php echo esc_attr( $attributes['flow'] ); ?>"
+				style="<?php echo esc_attr( $attributes['itemMinWidth'] ? '--sms--item-min-width:' . $attributes['itemMinWidth'] : '' ); ?>"
+			>
 				<?php foreach ( $options as $option ) : ?>
 					<label>
 						<span class="c-checkbox">
@@ -79,7 +81,10 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-custom-fie
 		<?php endif; ?>
 
 		<?php if ( 'radios' === $control_type ) : ?>
-			<div class="sms-radios">
+			<div
+				class="sms-radios sms-is-layout-<?php echo esc_attr( $attributes['flow'] ); ?>"
+				style="<?php echo esc_attr( $attributes['itemMinWidth'] ? '--sms--item-min-width:' . $attributes['itemMinWidth'] : '' ); ?>"
+			>
 				<?php foreach ( $options as $option ) : ?>
 					<label>
 						<span class="c-radio">

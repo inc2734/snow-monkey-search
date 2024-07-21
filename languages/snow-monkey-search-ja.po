@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Search 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "search\n"
-"POT-Creation-Date: 2024-07-19T09:58:42+00:00\n"
-"PO-Revision-Date: 2024-07-19 18:59+0900\n"
+"POT-Creation-Date: 2024-07-21T03:21:43+00:00\n"
+"PO-Revision-Date: 2024-07-21 12:23+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -49,16 +49,16 @@ msgstr "絞り込みをクリア"
 msgid "Apply Filter"
 msgstr "この条件で検索"
 
-#: snow-monkey-search.php:61
+#: snow-monkey-search.php:63
 msgid "[Snow Monkey Search] Needs the Snow Monkey."
 msgstr "[Snow Monkey Search] Snow Monkey が必要です。"
 
 #. translators: %1$s: version.
-#: snow-monkey-search.php:91
+#: snow-monkey-search.php:93
 msgid "[Snow Monkey Search] Needs the Snow Monkey %1$s or more."
 msgstr "[Snow Monkey Search] Snow Monkey %1$s 以上が必要です。"
 
-#: snow-monkey-search.php:230
+#: snow-monkey-search.php:232
 msgid "Sorry, but nothing matched your search terms."
 msgstr "ご指定の検索条件に合う投稿がありませんでした。"
 
@@ -71,12 +71,6 @@ msgstr "ブロック設定"
 #: dist/blocks/custom-field-search/index.js:1
 msgid "Key"
 msgstr "キー"
-
-#: dist/blocks/custom-field-search/index.js:1
-#: dist/blocks/custom-field-search/index.js:4
-#: dist/blocks/period-search/index.js:4
-msgid "Type"
-msgstr "タイプ"
 
 #: dist/blocks/custom-field-search/index.js:1
 #: dist/blocks/taxonomy-search/index.js:1
@@ -111,6 +105,37 @@ msgstr "ラジオボタン"
 #: dist/blocks/taxonomy-search/index.js:1
 msgid "Select"
 msgstr "セレクトボックス"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Flow"
+msgstr "フロー"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Inline"
+msgstr "インライン"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Stack"
+msgstr "スタック"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Grid"
+msgstr "グリッド"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Item Minimum Width"
+msgstr "項目の最小幅"
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
+#: dist/blocks/period-search/index.js:4
+msgid "Type"
+msgstr "タイプ"
 
 #: dist/blocks/custom-field-search/index.js:1
 msgid "options"
@@ -225,26 +250,6 @@ msgstr "メイン"
 #: dist/blocks/search-box/index.js:1
 msgid "Sidebar"
 msgstr "サイドバー"
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Flow"
-msgstr "フロー"
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Inline"
-msgstr "インライン"
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Stack"
-msgstr "スタック"
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Grid"
-msgstr "グリッド"
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Item Minimum Width"
-msgstr "項目の最小幅"
 
 #: dist/blocks/taxonomy-search/index.js:1
 msgid "Taxonomy"

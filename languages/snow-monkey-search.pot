@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Search 0.1.0\n"
+"Project-Id-Version: Snow Monkey Search 0.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-search\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-19T09:58:42+00:00\n"
+"POT-Creation-Date: 2024-07-21T03:21:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: snow-monkey-search\n"
@@ -47,16 +47,16 @@ msgstr ""
 msgid "Apply Filter"
 msgstr ""
 
-#: snow-monkey-search.php:61
+#: snow-monkey-search.php:63
 msgid "[Snow Monkey Search] Needs the Snow Monkey."
 msgstr ""
 
 #. translators: %1$s: version.
-#: snow-monkey-search.php:91
+#: snow-monkey-search.php:93
 msgid "[Snow Monkey Search] Needs the Snow Monkey %1$s or more."
 msgstr ""
 
-#: snow-monkey-search.php:230
+#: snow-monkey-search.php:232
 msgid "Sorry, but nothing matched your search terms."
 msgstr ""
 
@@ -70,12 +70,6 @@ msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
 msgid "Key"
-msgstr ""
-
-#: dist/blocks/custom-field-search/index.js:1
-#: dist/blocks/custom-field-search/index.js:4
-#: dist/blocks/period-search/index.js:4
-msgid "Type"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
@@ -104,6 +98,37 @@ msgstr ""
 #: dist/blocks/custom-field-search/index.js:1
 #: dist/blocks/taxonomy-search/index.js:1
 msgid "Select"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Flow"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Inline"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Stack"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Grid"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/taxonomy-search/index.js:1
+msgid "Item Minimum Width"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:1
+#: dist/blocks/custom-field-search/index.js:4
+#: dist/blocks/period-search/index.js:4
+msgid "Type"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
@@ -213,26 +238,6 @@ msgstr ""
 
 #: dist/blocks/search-box/index.js:1
 msgid "Sidebar"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Flow"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Inline"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Stack"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Grid"
-msgstr ""
-
-#: dist/blocks/taxonomy-search/index.js:1
-msgid "Item Minimum Width"
 msgstr ""
 
 #: dist/blocks/taxonomy-search/index.js:1
