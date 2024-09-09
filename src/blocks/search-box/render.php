@@ -25,8 +25,8 @@ $request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore Word
 if ( $request_uri ) {
 	$home_url      = home_url();
 	$sub_directory = parse_url( $home_url, PHP_URL_PATH ) ?? '';
-	$path          = preg_replace( '|^' . preg_quote( $sub_directory ) . '|', '', $request_uri );
-	$action_to     = untrailingslashit( $home_url ) . $path;
+	$absolute_path = preg_replace( '|^' . preg_quote( $sub_directory ) . '|', '', $request_uri );
+	$action_to     = untrailingslashit( $home_url ) . $absolute_path;
 	$action_to     = preg_replace( '|/page/\d+|', '', $action_to );
 	$action_to     = preg_replace( '|paged=\d+|', '', $action_to );
 }

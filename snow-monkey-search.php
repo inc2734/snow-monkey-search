@@ -276,8 +276,8 @@ class Bootstrap {
 			$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			if ( $request_uri ) {
 				$sub_directory = parse_url( $home_url, PHP_URL_PATH ) ?? '';
-				$path          = preg_replace( '|^' . preg_quote( $sub_directory ) . '|', '', $request_uri );
-				$redirect      = untrailingslashit( $home_url ) . $path;
+				$absolute_path = preg_replace( '|^' . preg_quote( $sub_directory ) . '|', '', $request_uri );
+				$redirect      = untrailingslashit( $home_url ) . $absolute_path;
 				$redirect      = preg_replace( '|/page/\d+|', '', $redirect );
 				$redirect      = preg_replace( '|paged=\d+|', '', $redirect );
 
