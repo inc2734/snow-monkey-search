@@ -47,27 +47,18 @@ export default function ( { attributes, setAttributes, clientId } ) {
 
 	// Set initial display area to meta.
 	useEffect( () => {
-		if ( ! meta?.sms_display_area ) {
+		if ( ! meta?.sms_related_post_type || ! meta?.sms_display_area ) {
 			setMeta( {
 				...meta,
-				sms_display_area: displayArea,
+				sms_related_post_type: ! meta?.sms_related_post_type
+					? relatedPostType
+					: undefined,
+				sms_display_area: ! meta?.sms_display_area
+					? displayArea
+					: undefined,
 			} );
 		}
 	}, [] );
-
-	useEffect( () => {
-		setMeta( {
-			...meta,
-			sms_related_post_type: relatedPostType,
-		} );
-	}, [ relatedPostType ] );
-
-	useEffect( () => {
-		setMeta( {
-			...meta,
-			sms_display_area: displayArea,
-		} );
-	}, [ displayArea ] );
 
 	const blockProps = useBlockProps( {
 		className: 'sms-search-box',
@@ -99,6 +90,11 @@ export default function ( { attributes, setAttributes, clientId } ) {
 							setAttributes( {
 								relatedPostType: newAttribute,
 							} );
+
+							setMeta( {
+								...meta,
+								sms_related_post_type: newAttribute,
+							} );
 						} }
 						options={ [
 							{
@@ -118,6 +114,11 @@ export default function ( { attributes, setAttributes, clientId } ) {
 						onChange={ ( newAttribute ) => {
 							setAttributes( {
 								displayArea: newAttribute,
+							} );
+
+							setMeta( {
+								...meta,
+								sms_display_area: newAttribute,
 							} );
 						} }
 						options={ [

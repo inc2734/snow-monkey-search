@@ -9,7 +9,7 @@
 	"attributes": {
 		"relatedPostType": {
 			"type": "string",
-			"default": ""
+			"default": "post"
 		},
 		"displayArea": {
 			"type": "string",
