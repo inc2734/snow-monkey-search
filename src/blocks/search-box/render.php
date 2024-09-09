@@ -23,9 +23,12 @@ $block_wrapper = get_block_wrapper_attributes( array( 'class' => 'sms-search-box
 $action_to   = '';
 $request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 if ( $request_uri ) {
-	$action_to = home_url( $request_uri );
-	$action_to = preg_replace( '|/page/\d+|', '', $action_to );
-	$action_to = preg_replace( '|paged=\d+|', '', $action_to );
+	$home_url      = home_url();
+	$sub_directory = parse_url( $home_url, PHP_URL_PATH ) ?? '';
+	$path          = preg_replace( '|^' . preg_quote( $sub_directory ) . '|', '', $request_uri );
+	$action_to     = untrailingslashit( $home_url ) . $path;
+	$action_to     = preg_replace( '|/page/\d+|', '', $action_to );
+	$action_to     = preg_replace( '|paged=\d+|', '', $action_to );
 }
 ?>
 

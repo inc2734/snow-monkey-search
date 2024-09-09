@@ -275,9 +275,11 @@ class Bootstrap {
 		if ( is_404() && 1 < get_query_var( 'paged' ) ) {
 			$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			if ( $request_uri ) {
-				$redirect = home_url( $request_uri );
-				$redirect = preg_replace( '|/page/\d+|', '', $redirect );
-				$redirect = preg_replace( '|paged=\d+|', '', $redirect );
+				$sub_directory = parse_url( $home_url, PHP_URL_PATH ) ?? '';
+				$path          = preg_replace( '|^' . preg_quote( $sub_directory ) . '|', '', $request_uri );
+				$redirect      = untrailingslashit( $home_url ) . $path;
+				$redirect      = preg_replace( '|/page/\d+|', '', $redirect );
+				$redirect      = preg_replace( '|paged=\d+|', '', $redirect );
 
 				wp_safe_redirect( $redirect );
 				exit;
