@@ -27,6 +27,7 @@ class Register {
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/keyword-search' );
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/period-search' );
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/search-box' );
+		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/snow-monkey-search' );
 		register_block_type( SNOW_MONKEY_SEARCH_PATH . '/dist/blocks/taxonomy-search' );
 
 		foreach ( \WP_Block_Type_Registry::get_instance()->get_all_registered() as $block_type => $block ) {

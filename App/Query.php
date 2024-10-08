@@ -108,6 +108,8 @@ class Query {
 				$query->is_home = true;
 			}
 
+			$query->set( 'ignore_sticky_posts', true );
+
 			// Taxonomy query.
 			$taxonomies = filter_input( INPUT_GET, 'sms-taxonomies', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
 			if ( $taxonomies ) {

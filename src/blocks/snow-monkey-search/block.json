@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "snow-monkey-search",
+	"name": "snow-monkey-search/snow-monkey-search",
+	"title": "Snow Monkey Search",
+	"category": "snow-monkey-search",
+	"attributes": {
+		"formId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
