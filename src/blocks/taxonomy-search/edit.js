@@ -106,6 +106,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Control Type', 'snow-monkey-search' ) }
 							value={ controlType }
 							onChange={ ( newAttribute ) => {
@@ -144,6 +145,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							}
 						>
 							<SelectControl
+								__nextHasNoMarginBottom
 								label={ __( 'Flow', 'snow-monkey-search' ) }
 								value={ flow }
 								onChange={ ( newAttribute ) => {
@@ -227,6 +229,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Taxonomy', 'snow-monkey-search' ) }
 							value={ taxonomy }
 							onChange={ ( newAttribute ) => {

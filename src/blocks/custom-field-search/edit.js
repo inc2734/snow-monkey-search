@@ -143,6 +143,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Key', 'snow-monkey-search' ) }
 							value={ key }
 							onChange={ ( newAttribute ) => {
@@ -183,6 +184,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Control Type', 'snow-monkey-search' ) }
 							help={ __(
 								'For "Text," depending on the "Type," it will automatically change to the appropriate control. For "Checkbox," "Radio Button," and "Select Box," you need to set the choices.',
@@ -229,6 +231,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							}
 						>
 							<SelectControl
+								__nextHasNoMarginBottom
 								label={ __( 'Flow', 'snow-monkey-search' ) }
 								value={ flow }
 								onChange={ ( newAttribute ) => {
@@ -315,6 +318,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							'radios' === finalControlType ||
 							'select' === finalControlType ) && (
 							<TextareaControl
+								__nextHasNoMarginBottom
 								label={ __( 'options', 'snow-monkey-search' ) }
 								value={ options }
 								help={ sprintf(
@@ -347,6 +351,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Type', 'snow-monkey-search' ) }
 							value={ type }
 							onChange={ ( newAttribute ) => {
@@ -398,6 +403,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Compare', 'snow-monkey-search' ) }
 							value={ compare }
 							onChange={ ( newAttribute ) => {

@@ -80,6 +80,7 @@ export default function ( { attributes, setAttributes, clientId } ) {
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings' ) }>
 					<SelectControl
+						__nextHasNoMarginBottom
 						label={ __( 'Post Type', 'snow-monkey-search' ) }
 						help={ __(
 							'Custom post archives displaying this search box',
@@ -109,6 +110,7 @@ export default function ( { attributes, setAttributes, clientId } ) {
 					/>
 
 					<SelectControl
+						__nextHasNoMarginBottom
 						label={ __( 'Display Area', 'snow-monkey-search' ) }
 						value={ displayArea }
 						onChange={ ( newAttribute ) => {

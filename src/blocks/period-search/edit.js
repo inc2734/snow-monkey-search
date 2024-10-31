@@ -77,6 +77,7 @@ export default function ( { attributes, setAttributes } ) {
 						}
 					>
 						<SelectControl
+							__nextHasNoMarginBottom
 							label={ __( 'Type', 'snow-monkey-search' ) }
 							value={ controlType }
 							onChange={ ( newAttribute ) => {

@@ -50,6 +50,7 @@ export default function ( { attributes, setAttributes } ) {
 						}
 					>
 						<TextControl
+							__nextHasNoMarginBottom
 							label={ __( 'Placeholder', 'snow-monkey-search' ) }
 							value={ placeholder }
 							onChange={ ( newAttribute ) =>
