@@ -48,7 +48,13 @@ class Bootstrap {
 	 */
 	public function _plugins_loaded() {
 		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
-		load_plugin_textdomain( 'snow-monkey-search', false, basename( SNOW_MONKEY_SEARCH_PATH ) . '/languages' );
+
+		add_action(
+			'init',
+			function () {
+				load_plugin_textdomain( 'snow-monkey-search', false, basename( SNOW_MONKEY_SEARCH_PATH ) . '/languages' );
+			}
+		);
 
 		new App\Updater();
 
