@@ -63,6 +63,16 @@ if ( ! $terms ) {
 	return;
 }
 
+$terms = apply_filters(
+	'sms_taxonomy_search_terms',
+	$terms,
+	array(
+		'taxonomy'  => $wp_taxonomy->name,
+		'post_id'   => get_the_ID(),
+		'post_type' => get_post_type(),
+	)
+);
+
 $http_this = filter_input( INPUT_GET, 'sms-taxonomies', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ?? array();
 $http_this = $http_this[ $wp_taxonomy->name ] ?? array();
 $http_this = is_array( $http_this ) ? $http_this : array();
