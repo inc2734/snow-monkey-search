@@ -58,16 +58,16 @@
         },
         {
             "name": "inc2734/wp-github-plugin-updater",
-            "version": "3.1.14",
+            "version": "3.1.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inc2734/wp-github-plugin-updater.git",
-                "reference": "9a5ef90a8be31efa94e3a6df3e15e938fb224419"
+                "reference": "1891a24c325d8aa3d98358de1774eee024e4fa55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inc2734/wp-github-plugin-updater/zipball/9a5ef90a8be31efa94e3a6df3e15e938fb224419",
-                "reference": "9a5ef90a8be31efa94e3a6df3e15e938fb224419",
+                "url": "https://api.github.com/repos/inc2734/wp-github-plugin-updater/zipball/1891a24c325d8aa3d98358de1774eee024e4fa55",
+                "reference": "1891a24c325d8aa3d98358de1774eee024e4fa55",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
                 "phpcompatibility/phpcompatibility-wp": "*",
                 "wp-coding-standards/wpcs": "^3.1",
-                "yoast/phpunit-polyfills": "^2.0"
+                "yoast/phpunit-polyfills": "^1.1"
             },
             "type": "library",
             "autoload": {
@@ -99,9 +99,9 @@
             "description": "A library for WordPress that automatic plugin updater with GitHub API.",
             "support": {
                 "issues": "https://github.com/inc2734/wp-github-plugin-updater/issues",
-                "source": "https://github.com/inc2734/wp-github-plugin-updater/tree/3.1.14"
+                "source": "https://github.com/inc2734/wp-github-plugin-updater/tree/3.1.15"
             },
-            "time": "2025-02-05T05:37:55+00:00"
+            "time": "2025-02-06T04:31:23+00:00"
         }
     ],
     "packages-dev": [
