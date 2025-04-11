@@ -143,6 +143,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							label={ __( 'Key', 'snow-monkey-search' ) }
 							value={ key }
@@ -184,6 +185,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							label={ __( 'Control Type', 'snow-monkey-search' ) }
 							help={ __(
@@ -231,6 +233,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							}
 						>
 							<SelectControl
+								__next40pxDefaultSize
 								__nextHasNoMarginBottom
 								label={ __( 'Flow', 'snow-monkey-search' ) }
 								value={ flow }
@@ -286,6 +289,7 @@ export default function ( { attributes, setAttributes, context } ) {
 							}
 						>
 							<UnitControl
+								__next40pxDefaultSize
 								label={ __(
 									'Item Minimum Width',
 									'snow-monkey-search'
@@ -351,6 +355,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							label={ __( 'Type', 'snow-monkey-search' ) }
 							value={ type }
@@ -403,6 +408,7 @@ export default function ( { attributes, setAttributes, context } ) {
 						}
 					>
 						<SelectControl
+							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							label={ __( 'Compare', 'snow-monkey-search' ) }
 							value={ compare }

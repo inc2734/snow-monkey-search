@@ -122,6 +122,7 @@ export default function ( { attributes, setAttributes, clientId } ) {
 						}
 					>
 						<UnitControl
+							__next40pxDefaultSize
 							label={ __( 'Basic size', 'snow-monkey-search' ) }
 							help={ __(
 								'Basic size of the flex item.',
