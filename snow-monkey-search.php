@@ -1,17 +1,17 @@
 <?php
 /**
  * Plugin name: Snow Monkey Search
- * Version: 0.4.3
+ * Version: 1.0.0
  * Description: This plugin places a filtered search form in Snow Monkey's custom post archives.
  * Author: inc2734
  * Author URI: https://2inc.org
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: snow-monkey-search
- * Requires at least: 6.8-RC2
- * Tested up to: 6.8-RC2
+ * Requires at least: 6.8
+ * Tested up to: 6.8
  * Requires PHP: 7.4
- * Requires Snow Monkey: 26.0.0
+ * Requires Snow Monkey: 29.0.0
  *
  * @package snow-monkey-search
  * @author inc2734
