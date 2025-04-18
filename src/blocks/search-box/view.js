@@ -19,7 +19,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				[].slice
 					.call(
 						form.querySelectorAll(
-							'input:not([type=checkbox]):not([type="radio"])'
+							'input:not([type=checkbox]):not([type="radio"]):not([type="hidden"][name="post_type"]):not([type="hidden"][name="snow-monkey-search"])'
 						)
 					)
 					.forEach( ( input ) => ( input.value = '' ) );
