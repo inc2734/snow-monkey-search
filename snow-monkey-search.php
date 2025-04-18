@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: Snow Monkey Search
- * Version: 1.0.0
+ * Version: 1.0.1
  * Description: This plugin places a filtered search form in Snow Monkey's custom post archives.
  * Author: inc2734
  * Author URI: https://2inc.org
