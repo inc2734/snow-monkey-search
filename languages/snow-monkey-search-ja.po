@@ -5,23 +5,24 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Search 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "search\n"
-"POT-Creation-Date: 2024-10-08T06:22:58+00:00\n"
-"PO-Revision-Date: 2024-10-08 15:23+0900\n"
+"POT-Creation-Date: 2025-09-22T11:59:03+00:00\n"
+"PO-Revision-Date: 2025-09-22 20:59+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: \n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 "X-Domain: snow-monkey-search\n"
 
 #. Plugin Name of the plugin
-#: App/Register.php:76 App/Register.php:161
+#: snow-monkey-search.php App/Register.php:76 App/Register.php:161
 msgid "Snow Monkey Search"
 msgstr "Snow Monkey Search"
 
 #. Description of the plugin
+#: snow-monkey-search.php
 msgid ""
 "This plugin places a filtered search form in Snow Monkey's custom post "
 "archives."
@@ -30,10 +31,12 @@ msgstr ""
 "索フォームを設置します。"
 
 #. Author of the plugin
+#: snow-monkey-search.php
 msgid "inc2734"
 msgstr "inc2734"
 
 #. Author URI of the plugin
+#: snow-monkey-search.php
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
 
@@ -49,16 +52,17 @@ msgstr "絞り込みをクリア"
 msgid "Apply Filter"
 msgstr "この条件で検索"
 
-#: snow-monkey-search.php:63
+#: snow-monkey-search.php:69
 msgid "[Snow Monkey Search] Needs the Snow Monkey."
 msgstr "[Snow Monkey Search] Snow Monkey が必要です。"
 
 #. translators: %1$s: version.
-#: snow-monkey-search.php:93
+#: snow-monkey-search.php:99
+#, php-format
 msgid "[Snow Monkey Search] Needs the Snow Monkey %1$s or more."
 msgstr "[Snow Monkey Search] Snow Monkey %1$s 以上が必要です。"
 
-#: snow-monkey-search.php:232
+#: snow-monkey-search.php:238
 msgid "Sorry, but nothing matched your search terms."
 msgstr "ご指定の検索条件に合う投稿がありませんでした。"
 
@@ -132,10 +136,8 @@ msgid "Item Minimum Width"
 msgstr "項目の最小幅"
 
 #: dist/blocks/custom-field-search/index.js:1
-#: dist/blocks/custom-field-search/index.js:4
-#: dist/blocks/period-search/index.js:4
-msgid "Type"
-msgstr "タイプ"
+msgid "Options"
+msgstr "選択肢"
 
 #: dist/blocks/custom-field-search/index.js:1
 msgid "options"
@@ -147,6 +149,11 @@ msgid ""
 "Required. Enter in the following format: \"value\" : \"label\"%1$s or "
 "value%1$s"
 msgstr "必須。次の形式で入力: “value” : “label”%1$s あるいは value%1$s"
+
+#: dist/blocks/custom-field-search/index.js:4
+#: dist/blocks/period-search/index.js:4
+msgid "Type"
+msgstr "タイプ"
 
 #: dist/blocks/custom-field-search/index.js:4
 msgid "NUMERIC"

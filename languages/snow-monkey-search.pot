@@ -1,34 +1,38 @@
-# Copyright (C) 2024 inc2734
+# Copyright (C) 2025 inc2734
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Search 0.2.2\n"
+"Project-Id-Version: Snow Monkey Search 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-search\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-08T06:22:58+00:00\n"
+"POT-Creation-Date: 2025-09-22T11:59:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: snow-monkey-search\n"
 
 #. Plugin Name of the plugin
+#: snow-monkey-search.php
 #: App/Register.php:76
 #: App/Register.php:161
 msgid "Snow Monkey Search"
 msgstr ""
 
 #. Description of the plugin
+#: snow-monkey-search.php
 msgid "This plugin places a filtered search form in Snow Monkey's custom post archives."
 msgstr ""
 
 #. Author of the plugin
+#: snow-monkey-search.php
 msgid "inc2734"
 msgstr ""
 
 #. Author URI of the plugin
+#: snow-monkey-search.php
 msgid "https://2inc.org"
 msgstr ""
 
@@ -47,16 +51,17 @@ msgstr ""
 msgid "Apply Filter"
 msgstr ""
 
-#: snow-monkey-search.php:63
+#: snow-monkey-search.php:69
 msgid "[Snow Monkey Search] Needs the Snow Monkey."
 msgstr ""
 
 #. translators: %1$s: version.
-#: snow-monkey-search.php:93
+#: snow-monkey-search.php:99
+#, php-format
 msgid "[Snow Monkey Search] Needs the Snow Monkey %1$s or more."
 msgstr ""
 
-#: snow-monkey-search.php:232
+#: snow-monkey-search.php:238
 msgid "Sorry, but nothing matched your search terms."
 msgstr ""
 
@@ -126,9 +131,7 @@ msgid "Item Minimum Width"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
-#: dist/blocks/custom-field-search/index.js:4
-#: dist/blocks/period-search/index.js:4
-msgid "Type"
+msgid "Options"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:1
@@ -137,7 +140,13 @@ msgstr ""
 
 #. translators: %1$s: line-break-char.
 #: dist/blocks/custom-field-search/index.js:4
+#, js-format
 msgid "Required. Enter in the following format: \"value\" : \"label\"%1$s or value%1$s"
+msgstr ""
+
+#: dist/blocks/custom-field-search/index.js:4
+#: dist/blocks/period-search/index.js:4
+msgid "Type"
 msgstr ""
 
 #: dist/blocks/custom-field-search/index.js:4
@@ -201,6 +210,7 @@ msgstr ""
 
 #. translators: %1$s: <code>
 #: dist/blocks/period-search/index.js:4
+#, js-format
 msgid "If you want to include future posts in the search and display, use the %1$s filter hook."
 msgstr ""
 

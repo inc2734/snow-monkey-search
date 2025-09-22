@@ -306,15 +306,13 @@ export default function ( { attributes, setAttributes, context } ) {
 
 					<ToolsPanelItem
 						hasValue={ () =>
-							controlType !==
-							metadata.attributes.controlType.default
+							options !== metadata.attributes.options.default
 						}
 						isShownByDefault
-						label={ __( 'Type', 'snow-monkey-search' ) }
+						label={ __( 'Options', 'snow-monkey-search' ) }
 						onDeselect={ () =>
 							setAttributes( {
-								controlType:
-									metadata.attributes.controlType.default,
+								options: metadata.attributes.options.default,
 							} )
 						}
 					>
