@@ -63,7 +63,6 @@ export default function ( { attributes, setAttributes, clientId } ) {
 						}
 					>
 						<ToggleControl
-							__nextHasNoMarginBottom
 							label={ __( 'Fill' ) }
 							help={ __(
 								'Allows for stretching from the basic size.',
@@ -93,7 +92,6 @@ export default function ( { attributes, setAttributes, clientId } ) {
 						}
 					>
 						<ToggleControl
-							__nextHasNoMarginBottom
 							label={ __( 'Fit' ) }
 							help={ __(
 								'Allow shrinkage from the basic size.',
@@ -122,7 +120,6 @@ export default function ( { attributes, setAttributes, clientId } ) {
 						}
 					>
 						<UnitControl
-							__next40pxDefaultSize
 							label={ __( 'Basic size', 'snow-monkey-search' ) }
 							help={ __(
 								'Basic size of the flex item.',

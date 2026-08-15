@@ -77,8 +77,6 @@ export default function ( { attributes, setAttributes } ) {
 						}
 					>
 						<SelectControl
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
 							label={ __( 'Type', 'snow-monkey-search' ) }
 							value={ controlType }
 							onChange={ ( newAttribute ) => {
@@ -113,7 +111,6 @@ export default function ( { attributes, setAttributes } ) {
 					>
 						<div className="sms-date-control">
 							<InputControl
-								__next40pxDefaultSize
 								label={ __(
 									'Minimum Date',
 									'snow-monkey-search'
@@ -144,7 +141,6 @@ export default function ( { attributes, setAttributes } ) {
 					>
 						<div className="sms-date-control">
 							<InputControl
-								__next40pxDefaultSize
 								label={ __(
 									'Maximum Date',
 									'snow-monkey-search'

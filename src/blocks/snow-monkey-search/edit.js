@@ -37,8 +37,6 @@ export default function ( { attributes, setAttributes, isSelected } ) {
 					label={ __( 'Select a search box', 'snow-monkey-search' ) }
 				>
 					<SelectControl
-						__next40pxDefaultSize
-						__nextHasNoMarginBottom
 						value={ formId }
 						options={ [
 							{
