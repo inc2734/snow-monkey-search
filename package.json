@@ -62,7 +62,7 @@
 		"format:blocks": "wp-scripts format src/blocks",
 		"format": "run-p format:*",
 		"clean:zip": "rimraf snow-monkey-search.zip",
-		"zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/tests' --exclude='package*.json' . snow-monkey-search && wp-env start && npm run composer install -- --no-dev -d snow-monkey-search",
+		"zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='/eslint.config.*' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/tests' --exclude='package*.json' . snow-monkey-search && wp-env start && npm run composer install -- --no-dev -d snow-monkey-search",
 		"zip:archive": "zip -9 -qmr snow-monkey-search.zip snow-monkey-search",
 		"zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
 		"make-pot": "wp-env start && npm run wp i18n -- make-pot . ./languages/snow-monkey-search.pot -- --exclude=.*,src",
