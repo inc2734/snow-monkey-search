@@ -64,7 +64,7 @@ export default function ( { attributes, setAttributes, context } ) {
 			return taxonomyAvailabled
 				? select( coreStore ).getEntityRecords( 'taxonomy', taxonomy, {
 						per_page: -1,
-				  } ) || []
+					} ) || []
 				: [];
 		},
 		[ taxonomy, taxonomyAvailabled ]
